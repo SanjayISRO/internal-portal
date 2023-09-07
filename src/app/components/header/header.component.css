@@ -1,0 +1,93 @@
+* {
+    box-sizing: border-box;
+}
+
+header {
+    /* height: 200px; */
+    /* height: 160px; */
+    padding: 20px;
+    background-color: #374f74;
+    position: sticky;
+    width: 100%;
+    /* overflow: auto; */
+    top: 0;
+    z-index: 10;
+}
+
+/* .logo_container {
+    float: left;
+    background: #fff;
+    border-radius: 50%;
+    width: 100px;
+    padding-top: 1.5%;
+    height: 100px;
+    text-align: center;
+    box-shadow: 0px 0px 5px 5px #ff4f1f;
+    background-image: url('../../../assets/images/logo_2.png');
+    background-repeat: no-repeat;
+    background-position: -47px -14px;
+} */
+
+.logo_container {
+    float: left;
+    height: 100px;
+    position: absolute;
+    top: -36px;
+}
+
+#title {
+    text-align: center;
+    font-size: 40px;
+    color: #fff;
+    /* text-decoration: underline; */
+    /* font-style: italic; */
+    margin-bottom: 0px;
+}
+
+nav ul {
+    margin-bottom: 0;
+}
+
+nav ul li {
+    list-style-type: none;
+    float: left;
+    margin: 0 0 0 30px;
+    cursor: pointer;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+    /* font-size: 20px; */
+    padding-bottom: 5px;
+}
+
+a:hover,
+#title span:hover {
+    color: #ff4f1f;
+}
+
+i {
+    padding-right: 7px;
+}
+
+.activeNav{
+    border-bottom: 2px solid #ff4f1f
+}
+
+h3 {
+    position: absolute;
+    top: 54px;
+    left: 40%;
+}
+
+li:hover {
+    transform: scale(1.1);
+    transition: 0.5s;
+    z-index: 100;
+}
+
+.disable_events {
+    pointer-events: none;
+    opacity: 0.9;
+}

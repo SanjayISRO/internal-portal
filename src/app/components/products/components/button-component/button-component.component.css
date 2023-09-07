@@ -1,0 +1,14 @@
+button:hover {
+    background-color: #ff4f1f;
+    box-shadow: 0px 5px 0px 3px #374f74;
+}
+
+button {
+    padding: 10px;
+    background-color: #374f74;
+    color: #fff;
+    font-weight: bolder;
+    cursor: pointer;
+    box-shadow: 0px 5px 0px 3px #ff4f1f;
+    border-radius: 50px;
+}

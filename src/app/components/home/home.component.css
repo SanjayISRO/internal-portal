@@ -1,0 +1,76 @@
+* {
+    color: #fff;
+}
+
+h1 {
+    font-size: 35px;
+    text-decoration: underline;
+}
+
+h4 {
+    font-size: 25px;
+    margin-bottom: 0;
+}
+
+p, ul li {
+    font-size: 20px;
+}
+
+span {
+    font-size: 30px;
+}
+
+.banner {
+    width: 70%;
+}
+
+button {
+    background: rgb(55, 79, 116);
+    padding: 10px;
+    cursor: pointer;
+}
+
+.slider_p {
+    margin: 0px 0 0 0;
+    color: #364f74;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+:host >>> ngb-carousel .carousel-indicators {
+    margin: -10% 0 0 0 !important;
+}
+
+.align_text {
+    text-align: center;
+}
+
+:host >>> .wrapper {
+    height: 320px;
+}
+
+.parallax_one, .parallax_two {
+    background-image: url("../../../assets/images/bg_img_1.png");
+
+  /* Set a specific height */
+  min-height: 680px; 
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: 0 160px;
+  background-repeat: no-repeat;
+  background-size: cover
+}
+
+.parallax_two {
+    background-image: url("../../../assets/images/bg_img_5.png");
+    background-position: 0 199px;
+    min-height: 700px; 
+    /* background-position: 0 360px; */
+}
+
+.home_container {
+    position: absolute;
+    top: 200px;
+    padding: 0 30px;
+}

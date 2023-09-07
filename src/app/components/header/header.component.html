@@ -1,0 +1,27 @@
+<header [ngClass]="{'disable_events': isRegisterClicked}">
+    <div class="logo_container">
+        <img src="../../../assets/images/logo_gif.gif" alt="logo" height="260">
+    </div>
+    <div class="header_text">
+        <!-- <h3 [id]="idValue">
+            <span>{{title}}</span>
+        </h3> -->
+        <div [id]="idValue">
+            <p style="margin-bottom: 0;">{{title}}</p>
+            <img src="../../../assets//images/sub_logo_3.gif" alt="" height="35">
+        </div>
+        <nav>
+            <ul style="float: right; margin-right: 20px;">
+                <li><a [ngClass]="{'activeNav': selectedTab === 'home'}" (click)="selectedTab = 'home'"
+                        routerLink="genesysindiahackathon"><i class="fa fa-home"></i>Home</a></li>
+                <li><a [ngClass]="{'activeNav': selectedTab === 'workshops'}" (click)="selectedTab = 'workshops'"
+                        routerLink="workshops"><i class="fa fa-video-camera"></i>Workshops</a></li>
+                <li><a [ngClass]="{'activeNav': selectedTab === 'usersList'}" (click)="selectedTab = 'usersList'"
+                        routerLink="usersList"><i class="fa fa-handshake-o"></i>Connect & Collaborate</a></li>
+                <li><a [ngClass]="{'activeNav': selectedTab === 'faq'}" (click)="selectedTab = 'faq'"
+                        routerLink="faq"><i class="fa fa-question-circle-o"></i>FAQs</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div style="clear: both"></div>
+</header>

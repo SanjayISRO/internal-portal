@@ -1,0 +1,22 @@
+.workshop_conatiner {
+    color: #fff;
+    padding: 20px;
+    /* background-color: #ff4f1f; */
+    /* min-height: 800px; */
+}
+
+.workshop_conatiner > h3 {
+    text-align: center;
+    font-size: 30px;
+    padding-bottom: 10px;
+}
+
+.video_styles {
+    width: 100%;
+}
+
+.video_container {
+    width: 50%;
+    margin: 0 auto;
+    padding: 0;
+}
