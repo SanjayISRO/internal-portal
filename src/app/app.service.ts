@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { HttpService } from './common/services/http.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,25 +11,10 @@ export class AppService {
   isRegisterClicked = new BehaviorSubject(false);
   checkFlagValue = this.isRegisterClicked.asObservable();
 
-  usersList: Array<object> = [
-    {
-      name: 'sanjay',
-      email: 'sanjay@genesys.com',
-      isAdmin: false
-    },
-    {
-      name: 'kural',
-      email: 'kural@genesys.com',
-      isAdmin: true
-    },
-    {
-      name: 'prasad',
-      email: 'prasad@genesys.com',
-      isAdmin: true
-    }
-  ]
+  configData = new BehaviorSubject({});
+  registerdUserDetailsData = new BehaviorSubject({});
 
-  constructor() { }
+  constructor(private httpService: HttpService) { }
 
   setFlagValue(flagValue: boolean): void {
     this.isRegisterClicked.next(flagValue)
@@ -41,7 +28,37 @@ export class AppService {
     });
   }
 
-  getUserListData(userName): object {
-    return this.usersList.find(e => e['name'] === userName);
+  // getUserListData(userName): object {
+  //   return this.usersList.find(e => e['name'] === userName);
+  // }
+
+
+  getConfigData(): Observable<object> {
+    return this.httpService.get('getConfigData');
   }
+
+  setConfigData(data: object): void {
+    this.configData.next(data);
+  }
+
+  fetchConfigData(): Observable<object> {
+    return this.configData.asObservable();
+  }
+
+  validateUsers(userName: string, password: string): Observable<object> {
+    return this.httpService.post('validateUser', {name: userName, password: password});
+  }
+
+  setRegisteredUserDetailsData(data: object): void {
+    this.registerdUserDetailsData.next(data);
+  }
+
+  getRegisteredUserDetailsData(): Observable<object> {
+    return this.registerdUserDetailsData.asObservable();
+  }
+
+  getRegisteredList(): Observable<object> {
+    return this.httpService.get('registeredList')
+  }
+
  }

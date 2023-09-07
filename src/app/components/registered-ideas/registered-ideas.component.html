@@ -1,0 +1,75 @@
+<section style="padding: 30px;">
+    <section class="container" *ngIf="canLoadContent">
+        <mat-form-field appearance="fill" style="width: 45%;">
+            <mat-label>Event Name</mat-label>
+            <mat-select [(ngModel)]="selectedEventName" disabled>
+                <mat-option *ngFor="let eventName of listOfEvents" [value]="eventName.name">
+                    {{eventName.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div *ngIf="isAdminUser" style="float: right; width: 15%">
+            <button  [ngClass]="{'disabled': !registerdUsersData || registerdUsersData && !registerdUsersData.length}" [disabled]="!registerdUsersData || registerdUsersData && !registerdUsersData.length" class="" (click)="exportToExcel()">Export to excel</button>
+        </div>
+
+        <div>
+          <ng-container *ngIf="eventNames.INNOVATION_DAY && isAdminUser">
+              <div class="tableHeaderContainer" style="width: 100%;">
+                <div class="tableHeader" style="float: left; width: 5%;">S.No</div>
+                <div class="tableHeader" style="float: left; width: 15%;">Team Name</div>
+                <div class="tableHeader" style="float: left; width: 20%;">Team members Details</div>
+                <div class="tableHeader" style="float: left; width: 15%;">Submission Mode</div>
+                <div class="tableHeader" style="float: left; width: 10%;">Location</div>
+                <div class="tableHeader" style="float: right; width: 35%;">Gist of Idea</div>
+              </div>
+              <div style="clear:both"></div>
+              <div class="tableBodyContainer">
+                <ng-container *ngFor="let details of registerdUsersData; let i = index">
+                    <div class="bodyCell" style="float: left; width: 5%;">{{i + 1}}</div>
+                    <div class="bodyCell" style="float: left; width: 15%; overflow: hidden; word-break: break-all;">{{details.teamName}}</div>
+                    <div class="bodyCell" style="float: left; width: 20%; overflow: hidden; word-break: break-all;">
+                      <ul style="padding-left: 15px;">
+                        <li *ngFor="let member of details['teamMembersDetails']">{{member.emailId}}</li>
+                      </ul>
+                    </div>
+                    <div class="bodyCell" style="float: left; width: 15%; overflow: hidden; word-break: break-all;">{{details.submissionMode}}</div>
+                    <div class="bodyCell" style="float: left; width: 10%;">{{details.location}}</div>
+                    <div class="bodyCell" style="float: left; width: 35%;">{{details.gistOfIdea}}</div>
+                    <div style="clear:both"></div>
+                  </ng-container>
+              </div>
+              
+          </ng-container>
+
+          <ng-container *ngIf="eventNames.INNOVATION_DAY && !isAdminUser">
+            <div class="tableHeaderContainer" style="width: 100%;">
+              <div class="tableHeader" style="float: left; width: 10%;">S.No</div>
+              <div class="tableHeader" style="float: left; width: 20%;">Team Name</div>
+              <div class="tableHeader" style="float: left; width: 25%;">Team members Details</div>
+              <div class="tableHeader" style="float: left; width: 20%;">Submission Mode</div>
+              <div class="tableHeader" style="float: left; width: 20%;">Location</div>
+              <div  *ngIf="isAdminUser" class="tableHeader" style="float: right; width: 35%;">Gist of Idea</div>
+            </div>
+            <div style="clear:both"></div>
+            <div class="tableBodyContainer">
+              <ng-container *ngFor="let details of registerdUsersData; let i = index">
+                  <div class="bodyCell" style="float: left; width: 10%;">{{i + 1}}</div>
+                  <div class="bodyCell" style="float: left; width: 20%; overflow: hidden; word-break: break-all;">{{details.teamName}}</div>
+                  <div class="bodyCell" style="float: left; width: 25%; overflow: hidden; word-break: break-all;">
+                    <ul style="padding-left: 15px;">
+                      <li *ngFor="let member of details['teamMembersDetails']">{{member.emailId}}</li>
+                    </ul>
+                  </div>
+                  <div class="bodyCell" style="float: left; width: 20%; overflow: hidden; word-break: break-all;">{{details.submissionMode}}</div>
+                  <div class="bodyCell" style="float: left; width: 20%;">{{details.location}}</div>
+                  <div  *ngIf="isAdminUser" class="bodyCell" style="float: left; width: 35%;">{{details.gistOfIdea}}</div>
+                  <div style="clear:both"></div>
+                </ng-container>
+            </div>
+            
+        </ng-container>
+
+        </div>
+    </section>
+</section>

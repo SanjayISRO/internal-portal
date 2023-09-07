@@ -6,3 +6,39 @@
 p {
     padding-left: 25px;
 }
+
+.mat_error_card,
+.mat_success_card {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    color: red;
+    background-color: #ffd0d0;
+    z-index: 999;
+}
+
+.mat_card {
+    max-width: 300px;
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    padding: 40px;
+    text-align: center;
+    /* background-color: #fff; */
+}
+
+
+:host >>> .mat-mdc-progress-spinner .mdc-circular-progress__determinate-circle,
+:host >>> .mat-mdc-progress-spinner .mdc-circular-progress__indeterminate-circle-graphic {
+    stroke: #fff !important;
+}
+
+.anchor_tag {
+    color: #fff;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.anchor_tag:hover {
+    color: blue;
+}

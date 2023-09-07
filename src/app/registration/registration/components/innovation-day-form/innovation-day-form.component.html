@@ -1,0 +1,178 @@
+<ng-container *ngIf="canLoadContent">
+
+    <form [formGroup]="innovationDayRegistrationForm">
+        <ng-container *ngIf="!checkBoxValue">
+            <mat-form-field class="example-full-width" style="width: 45%;">
+                <mat-label>Team Name</mat-label>
+                <input name="teamName" formControlName="teamName" matInput autocomplete="off" required>
+                <mat-error *ngIf="innovationDayRegistrationForm.controls['teamName'].hasError('required')">Team Name is
+                    <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="innovationDayRegistrationForm.controls['teamName'].hasError('nameExists')">Team Name
+                    already exists. Please enter another name.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" style="width: 45%; margin-left: 25px;">
+                <mat-label>Team Size</mat-label>
+                <input name="teamSize" formControlName="teamSize" matInput autocomplete="off" required type="number"
+                    min="1" [max]="maxSize">
+                <mat-error *ngIf="innovationDayRegistrationForm.controls['teamSize'].hasError('required')">Team Size is
+                    <strong>required</strong>
+                </mat-error>
+                <mat-error
+                    *ngIf="innovationDayRegistrationForm.controls['teamSize'].value === 0 && innovationDayRegistrationForm.controls['teamSize'].value < 1">
+                    Minimum team
+                    size should be
+                    <strong>1</strong>
+                </mat-error>
+                <mat-error
+                    *ngIf="innovationDayRegistrationForm.controls['teamSize'].value && innovationDayRegistrationForm.controls['teamSize'].value > maxSize">
+                    Maximum team
+                    size should not exceed
+                    <strong>{{maxSize}}</strong>
+                </mat-error>
+            </mat-form-field>
+        </ng-container>
+
+        <ng-container *ngIf="checkBoxValue">
+            <mat-form-field class="example-full-width" style="width: 45%;">
+                <mat-label>Team Name</mat-label>
+                <mat-select formControlName="teamName" name="teamName" [disabled]="!hideBtns">
+                    <mat-option *ngFor="let teamName of listOfTeamNames" [value]="teamName">
+                        {{teamName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" style="width: 45%; margin-left: 25px;" *ngIf="!hideBtns">
+                <mat-label>Team Size</mat-label>
+                <input name="teamSize" formControlName="teamSize" matInput autocomplete="off" required type="number"
+                    min="1" [max]="maxSize">
+                <mat-error *ngIf="innovationDayRegistrationForm.controls['teamSize'].hasError('required')">Team Size is
+                    <strong>required</strong>
+                </mat-error>
+                <mat-error
+                    *ngIf="innovationDayRegistrationForm.controls['teamSize'].value === 0 && innovationDayRegistrationForm.controls['teamSize'].value < 1">
+                    Minimum team
+                    size should be
+                    <strong>1</strong>
+                </mat-error>
+                <mat-error
+                    *ngIf="innovationDayRegistrationForm.controls['teamSize'].value && innovationDayRegistrationForm.controls['teamSize'].value > maxSize">
+                    Maximum team
+                    size should not exceed
+                    <strong>{{maxSize}}</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" style="width: 40%; margin-left: 15px;" *ngIf="hideBtns">
+                <mat-label>Secret Key</mat-label>
+                <input name="secretKey" formControlName="secretKey" matInput autocomplete="off" required>
+
+                <mat-error *ngIf="innovationDayRegistrationForm.controls['secretKey'].hasError('required')">Secret Key
+                    is
+                    <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <button
+            *ngIf="hideBtns"
+                [ngClass]="{'invalidState': !innovationDayRegistrationForm.controls['secretKey'].value || !innovationDayRegistrationForm.controls['teamName'].value }"
+                [disabled]="!innovationDayRegistrationForm.controls['secretKey'].value || !innovationDayRegistrationForm.controls['teamName'].value"
+                class="btn_submit button edit_button" (click)="onClickSubmitEditDetails()">Submit</button>
+        </ng-container>
+
+        <ng-container
+            *ngIf="innovationDayRegistrationForm.controls['teamSize'].value > 0 && innovationDayRegistrationForm.controls['teamSize'].value <= maxSize">
+            <div style="float: left; width: 45%">
+                <p class="font_bold">Team Members Details</p>
+                <div formArrayName="teamMembersDetails"
+                    *ngFor="let teamMember of teamMembersDetails().controls; let i=index" style="margin-top: 10px;">
+                    <div [formGroupName]="i">
+                        <!-- <mat-form-field class="example-full-width" style="width: 45%;">
+                    <mat-label>Name</mat-label>
+                    <input name="name" formControlName="name" matInput autocomplete="off" required>
+                    <mat-error *ngIf="teamMembersDetailsCon(i).controls['name'].hasError('required')">
+                        {{validation_message['name']['required']}}
+                    </mat-error>
+                </mat-form-field> -->
+                        <mat-form-field class="example-full-width" style="width: 100%;">
+                            <mat-label>Email</mat-label>
+                            <input name="emailId" formControlName="emailId" matInput autocomplete="off" required>
+                            <mat-error *ngIf="teamMembersDetailsCon(i).controls['emailId'].hasError('required')">
+                                {{validation_message['emailId']['required']}}
+                            </mat-error>
+                            <mat-error *ngIf="teamMembersDetailsCon(i).controls['emailId'].hasError('email')">
+                                {{validation_message['emailId']['email']}}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+            </div>
+            <div style="width: 47%; float: left; padding-left: 30px;">
+                <p class="font_bold">Gist of the Idea</p>
+                <textarea style="width: 100%;" [maxlength]="maxWordCount" #textAreaTag name="gistOfIdea" id="gistOfIdea" cols="59"
+                    formControlName="gistOfIdea"
+                    [rows]="rowHeightConfig[innovationDayRegistrationForm.controls['teamSize'].value]"></textarea>
+                <p class="word_limit">{{innovationDayRegistrationForm.controls['gistOfIdea'].value ? innovationDayRegistrationForm.controls['gistOfIdea'].value.length : 0}}/{{maxWordCount}}</p>
+            </div>
+            <div style="clear: both"></div>
+            <ng-container *ngIf="!checkBoxValue || !hideBtns">
+                <!-- <p style="width: 45%;" class="font_bold">Use this key for authentication while editing the details</p> -->
+                <!-- <div style="width: 45%; float: left;">
+                <mat-form-field class="example-full-width" style="width: 100%;">
+                    <mat-label>Secret Key</mat-label>
+                    <input name="secretKey" formControlName="secretKey" matInput autocomplete="off" required>
+
+                    <mat-error *ngIf="innovationDayRegistrationForm.controls['secretKey'].hasError('required')">Secret
+                        Key
+                        is
+                        <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                </div> -->
+                <mat-form-field class="example-full-width" style="width: 45%;">
+                    <mat-label>Submission Mode</mat-label>
+                    <mat-select formControlName="submissionMode" name="submissionMode">
+                        <mat-option value="Email - via patents@genesys.com ">
+                            Email - via patents@genesys.com
+                        </mat-option>
+                        <mat-option value="Portal - via https://genesys.anaqua.com ">
+                            Portal - via https://genesys.anaqua.com 
+                         </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="innovationDayRegistrationForm.controls['submissionMode'].hasError('required')">Submission Mode is
+                        <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="example-full-width" style="width: 45%; margin: 0 0 0 25px;">
+                    <mat-label>Location</mat-label>
+                    <mat-select formControlName="location" name="location">
+                        <mat-option value="Chennai">
+                           Chennai
+                        </mat-option>
+                        <mat-option value="Rest of India">
+                            Rest of India
+                         </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="innovationDayRegistrationForm.controls['location'].hasError('required')">Location is
+                        <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </ng-container>
+        </ng-container>
+    </form>
+    <div class="margin_top_10" *ngIf="!hideBtns">
+        <button class="btn_clear button" (click)="onClickCancel()">Clear</button>
+        <button [ngClass]="{'invalidState': innovationDayRegistrationForm.status === 'INVALID' }"
+            class="btn_submit button" (click)="onClickSubmit()"
+            [disabled]="innovationDayRegistrationForm.status === 'INVALID'">Submit</button>
+    </div>
+</ng-container>
+
+<div class="mat_card" *ngIf="!canLoadContent">
+    <mat-spinner aria-label="Please wait..." color="warn"></mat-spinner>
+    <h3 style="margin-top: 20px;">Please wait...</h3>
+</div>

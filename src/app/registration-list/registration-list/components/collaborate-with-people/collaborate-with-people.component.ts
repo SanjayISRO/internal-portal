@@ -24,7 +24,7 @@ export class CollaborateWithPeopleComponent implements OnChanges {
   }
   
   filterItem(modelValue: string): void {
-    this.filteredResults = this.fileSaverService.getFilteredValues(this.collaborateUsersList, modelValue);
+    this.filteredResults = this.fileSaverService.getFilteredValues(this.collaborateUsersList, modelValue, 'collaborate');
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -32,7 +32,7 @@ export class CollaborateWithPeopleComponent implements OnChanges {
   }
 
   onClickEnrollNow(): void {
-    this.enrollNow.emit(true)
+    this.enrollNow.emit('collaborate')
   }
 
   onClickDelete(rowItem: UsersObject): void {

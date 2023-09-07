@@ -1,0 +1,28 @@
+<mat-card>
+    <mat-card-header class="modal-header" style="padding: 20px;">
+        <!-- <div > -->
+        <mat-card-title>User Validation</mat-card-title>
+        <!-- <h4 class="modal-title pull-left">User Registration Form</h4> -->
+        <button type="button" class="close btn_close_modal pull-right" aria-label="Close" mat-dialog-close="close">
+            X
+        </button>
+        <!-- </div> -->
+    </mat-card-header>
+
+    <mat-card-content class="modal-body" style="padding: 20px;">
+        <form>
+            <p style="color: red" *ngIf="secretKeyMisMatch" >Secret Key entered does not match the Secret Key saved.</p>
+            <mat-form-field class="example-full-width">
+                <mat-label>Secret Key</mat-label>
+                <input id="secretKey" name="secretKey" [(ngModel)]="secretKey" matInput autocomplete="off" type="password">
+            </mat-form-field>
+            <i [ngStyle]="{'top': secretKeyMisMatch ? '32%' : '16%'}"class="fa fa-eye" aria-hidden="true" (click)="onClickEye()"></i>
+        </form>
+        <button mat-raised-button color="primary" class="button" [disabled]="!secretKey" (click)="onClickSubmit()">Submit</button>
+        <button mat-raised-button class="button" color="warn" mat-dialog-close="open in read only">Open in read only mode</button>
+        <!-- <button [ngStyle]="{'opacity': !secretkey ? '0.5' : '1'}"  class="button" (click)="onClickSubmit()">Submit</button> -->
+        <!-- <button style="background-color: #dc5327;" class="button" mat-dialog-close="open in read only">Open in read only mode</button> -->
+        <h6 style="margin-top: 10px;"><i>Please contact genesysindiainnovation.com if you have forgotten the Secret Key</i></h6>
+    </mat-card-content>
+
+</mat-card>

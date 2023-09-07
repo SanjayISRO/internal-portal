@@ -1,0 +1,90 @@
+.container {
+    padding: 30px;
+    background: #fff;
+    width: 90%;
+    margin: 0 auto;
+    min-height: 600px;
+    max-height: 600px;
+    border-radius: 10px;
+}
+
+:host >>> mat-select .mat-mdc-select-min-line {
+    color: #000 !important;
+}
+
+thead {
+    background-color: #364f74;
+    color: #fff;
+}
+
+.tableFixHead {
+    overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
+    height: 400px; /* gives an initial height of 200px to the table */
+}
+.tableFixHead thead th {
+    position: sticky; /* make the table heads sticky */
+    top: 0px; /* table head will be placed from the top of the table and sticks to it */
+}
+table {
+    border-collapse: collapse; /* make the table borders collapse to each other */
+    width: 100%;
+}
+
+th,
+td {
+    padding: 5px;
+    border: 1px solid black;
+}
+
+thead th {
+    background-color: #364f74;
+    color: #fff;
+    padding: 15px 5px;
+}
+
+tbody tr {
+    vertical-align: top;
+}
+
+button:hover {
+    background-color: #ff4f1f;
+    box-shadow: 0px 5px 0px 3px #374f74;
+}
+
+button {
+    padding: 10px;
+    background-color: #374f74;
+    color: #fff;
+    font-weight: bolder;
+    cursor: pointer;
+    box-shadow: 0px 5px 0px 3px #ff4f1f;
+    border-radius: 50px;
+}
+
+.tableHeader {
+    background-color: #364f74;
+    color: #fff;
+    padding: 15px 5px;
+    border: 1px solid black;
+    /* text-align: center; */
+}
+
+.bodyCell {
+    padding: 5px;
+    border: 1px solid black;
+    height: 150px;
+    overflow-y: scroll;
+}
+
+.tableBodyContainer {
+    height: 400px;
+    overflow-y: scroll;
+}
+
+.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+
+

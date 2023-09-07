@@ -1,0 +1,44 @@
+section {
+    padding-top: 20px;
+}
+
+.container {
+    background-color: #fff;
+    width: 80%;
+    margin: 0 auto;
+    height: 600px;
+    border-radius: 25px;
+    padding: 20px;
+}
+
+.form_container {
+    max-height: 450px;
+    overflow-y: scroll;
+}
+
+.mat_error_card,
+.mat_success_card {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    color: red;
+    background-color: #ffd0d0;
+    z-index: 999;
+}
+
+.mat_success_card {
+    color: green;
+    background-color: #92f6a8;
+}
+
+.edit_details_container {
+    width: 13%;
+    float: right;
+    font-size: 20px;
+    color: #374f74;
+}
+
+.edit_details_container input,
+.edit_details_container label {
+    cursor: pointer;
+}

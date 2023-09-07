@@ -11,5 +11,19 @@ export interface UsersObject {
     genPlatform: string;
     isActive: boolean;
     id: number;
-    // expertise: string;
+    secretKey?: string;
+    title?: string;
+    problemStatement?: string;
+    status?: string;
+    teamMembersList?: Array<TeamMemberDetail>
+    lastModifiedDateAndTime: string;
+    createdDateAndTime: string;
+    priorityLevel?: string;
+}
+
+export interface TeamMemberDetail {
+  name: string;
+  email: string;
+  genPlatform: string;
+  department: string;
 }

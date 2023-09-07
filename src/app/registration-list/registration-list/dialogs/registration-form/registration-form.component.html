@@ -1,0 +1,185 @@
+<mat-card>
+    <mat-card-header class="modal-header" style="padding: 20px;">
+        <!-- <div > -->
+        <mat-card-title>{{data && data.option === 'connect' ? 'Create Problem Statement' : 'Volunteers Registration Form'}}
+        </mat-card-title>
+        <!-- <h4 class="modal-title pull-left">User Registration Form</h4> -->
+        <button type="button" class="close btn_close_modal pull-right" aria-label="Close" mat-dialog-close>
+            X
+        </button>
+        <!-- </div> -->
+    </mat-card-header>
+    <mat-card-content class="modal-body" style="padding: 20px;" *ngIf="userRegistrationForm">
+
+        <form class="example-form conect_form_height" [formGroup]="userRegistrationForm">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Name</mat-label>
+                        <input name="userName" formControlName="userName" matInput autocomplete="off" required>
+                        <mat-error *ngIf="userRegistrationForm.controls['userName'].hasError('required')">Name is
+                            <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Email</mat-label>
+                        <input name="email" formControlName="email" matInput autocomplete="off" required>
+                        <mat-error *ngIf="userRegistrationForm.controls['email'].hasError('required')">Email is
+                            <strong>required</strong>
+                        </mat-error>
+                        <mat-error
+                            *ngIf="userRegistrationForm.controls['email'].hasError('email') && !userRegistrationForm.controls['email'].hasError('required')">
+                            Please enter a valid Email address</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field style="width: 100%;">
+                        <mat-label>Genesys Platform</mat-label>
+                        <mat-select formControlName="genPlatform" name="genPlatform">
+                            <mat-option *ngFor="let genPlatform of genesysPlatformsList" [value]="genPlatform">
+                                {{genPlatform}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="userRegistrationForm.controls['genPlatform'].hasError('required')">Genesys
+                            Platform is
+                            <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field style="width: 100%;">
+                        <mat-label>Department</mat-label>
+                        <mat-select formControlName="department" name="department">
+                            <mat-option *ngFor="let department of listOfDepartments" [value]="department">
+                                {{department}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="userRegistrationForm.controls['department'].hasError('required')">Department
+                            is
+                            <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <mat-form-field class="example-full-width" appearance="fill"
+                    *ngIf="userRegistrationForm.controls['department'].value === 'Others'">
+                    <mat-label>Enter the department</mat-label>
+                    <input name="otherDepartmentName" formControlName="otherDepartmentName" matInput autocomplete="off">
+                    <mat-error *ngIf="userRegistrationForm.controls['otherDepartmentName'].hasError('required')">
+                        Department
+                        name is
+                        <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <ng-container
+                    *ngIf="userRegistrationForm.controls['contributionSelection'].value.toLowerCase() === 'connect'">
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Title</mat-label>
+                            <input name="title" formControlName="title" matInput autocomplete="off">
+                            <mat-error *ngIf="userRegistrationForm.controls['title'].hasError('required')">Title is
+                                <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Secret Key <i class="fa fa-info-circle" #tooltip="matTooltip" matTooltip="Use this secret key to edit the details in future" matTooltipPosition="above" style="cursor: pointer;"></i></mat-label>
+                            <input name="secretKey" formControlName="secretKey" matInput autocomplete="off">
+                            <mat-error *ngIf="userRegistrationForm.controls['secretKey'].hasError('required')">Secret
+                                Key is
+                                <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+
+                    </div>
+
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Problem Statement</mat-label>
+                        <textarea rows="7" name="problemStatement" formControlName="problemStatement" matInput
+                            autocomplete="off"></textarea>
+                        <mat-error *ngIf="userRegistrationForm.controls['problemStatement'].hasError('required')">
+                            Problem
+                            Statement is
+                            <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- <div class="col-md-6"> -->
+                    <mat-form-field appearance="fill" class="example-form-field" style="width: 100%;">
+                        <mat-label>Keywords/Key Requirements</mat-label>
+                        <mat-chip-grid #chipGrid aria-label="Enter keywords" formControlName="keywordsOrKeyReq">
+                            <mat-chip-row
+                                *ngFor="let keyword of userRegistrationForm.controls['keywordsOrKeyReq'].value"
+                                (removed)="removeKeyword(keyword, 'keywordsOrKeyReq')">
+                                {{keyword}}
+                                <button matChipRemove aria-label="'remove ' + keyword">
+                                    <mat-icon class="mat_close_icon">x</mat-icon>
+                                </button>
+                            </mat-chip-row>
+                        </mat-chip-grid>
+                        <input placeholder="Press enter after typing the value" [matChipInputFor]="chipGrid"
+                            (matChipInputTokenEnd)="add($event, 'keywordsOrKeyReq')" autocomplete="off" />
+                        <mat-error *ngIf="userRegistrationForm.controls['keywordsOrKeyReq'].hasError('required')">
+                            Keywords/Key Requirements is
+                            <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                <!-- </div> -->
+                <!-- <div class="col-md-6">
+                    <mat-form-field style="width: 100%;">
+                        <mat-label>Priority Level</mat-label>
+                        <mat-select formControlName="priorityLevel" name="priority">
+                            <mat-option *ngFor="let priority of priorityList" [value]="priority">
+                                {{priority}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="userRegistrationForm.controls['priorityLevel'].hasError('required')">Priority Level
+                            is
+                            <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div> -->
+                </ng-container>
+
+                <ng-container
+                    *ngIf="userRegistrationForm.controls['contributionSelection'].value.toLowerCase() === 'collaborate'">
+                    <mat-form-field appearance="fill" class="example-form-field" style="width: 100%; margin-top: 10px;">
+                        <mat-label>Skill(s)</mat-label>
+                        <mat-chip-grid #chipGrid aria-label="Enter keywords" formControlName="skillSetForCollaborate">
+                            <mat-chip-row
+                                *ngFor="let keyword of userRegistrationForm.controls['skillSetForCollaborate'].value"
+                                (removed)="removeKeyword(keyword, 'skillSetForCollaborate')">
+                                {{keyword}}
+                                <button matChipRemove aria-label="'remove ' + keyword">
+                                    <mat-icon class="mat_close_icon">x</mat-icon>
+                                </button>
+                            </mat-chip-row>
+                        </mat-chip-grid>
+                        <input placeholder="Press enter after typing the value" [matChipInputFor]="chipGrid"
+                            (matChipInputTokenEnd)="add($event, 'skillSetForCollaborate')" autocomplete="off" />
+                        <mat-error *ngIf="userRegistrationForm.controls['skillSetForCollaborate'].hasError('required')">
+                            Skill(s) is
+                            <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </ng-container>
+                <!-- <div style="margin-top: 35px">
+                <button [ngStyle]="{'opacity': !userRegistrationForm.valid ? '0.5' : '1'}"
+                    class="button" [disabled]="!userRegistrationForm.valid" (click)="onClickSubmit()">Submit</button>
+            </div> -->
+            </div>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button [ngStyle]="{'opacity': !userRegistrationForm.valid ? '0.5' : '1'}" class="button"
+            [disabled]="!userRegistrationForm.valid" (click)="onClickSubmit()">Submit</button>
+    </mat-card-actions>
+</mat-card>

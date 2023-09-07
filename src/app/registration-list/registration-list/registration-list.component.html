@@ -1,38 +1,52 @@
-<div style="padding: 10px 30px;"><section [ngClass]="{'add_opacity': isRegisterClicked}">
+<div style="padding: 10px 30px;">
+    <section [ngClass]="{'add_opacity': isRegisterClicked}">
 
-    <mat-tab-group>
-        <mat-tab>
-            <ng-template mat-tab-label>
-                <div class="tab_title">
-                    <img src="../../../assets/images/connect.png" width="40" height="40">Open to connect
-                </div>
-            </ng-template>
-            <app-connect-with-people *ngIf="canLoadContent" [connectUsersList]="connectUsersList" (enrollNow)="onClickEnrollNow($event)" (deleteRow)="onClickDeleteRow($event)">
-            </app-connect-with-people>
-        </mat-tab>
+        <mat-tab-group>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <div class="tab_title">
+                        <!-- <img src="../../../assets/images/connect.png" width="40" height="40"> -->
+                        <i class="fa fa-cogs" aria-hidden="true"></i>
+                        Problem Statements
+                    </div>
+                </ng-template>
+                <marquee direction="left" style="margin-top: 15px; color: #374f74;">
+                    Individuals/Team seeking expert advise/help can register their problem here.
+                </marquee>
+                <app-connect-with-people *ngIf="canLoadContent" [connectUsersList]="connectUsersList"
+                    (enrollNow)="onClickEnrollNow($event)" (deleteRow)="onClickDeleteRow($event)" (editRow)="onClickEditRow($event)">
+                </app-connect-with-people>
+            </mat-tab>
 
-        <mat-tab>
-            <ng-template mat-tab-label>
-                <div class="tab_title">
-                    <img src="../../../assets/images/collaborate.png" width="30" height="30"
-                        style="padding-right: 10px">Collaborate With Teams
-                </div>
-            </ng-template>
-            <app-collaborate-with-people *ngIf="canLoadContent" [collaborateUsersList]="collaborateUsersList" (enrollNow)="onClickEnrollNow($event)" (deleteRow)="onClickDeleteRow($event)">
-            </app-collaborate-with-people>
-        </mat-tab>
-    </mat-tab-group>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <div class="tab_title">
+                        <!-- <img src="../../../assets/images/collaborate.png" width="30" height="30"
+                            style="padding-right: 10px"> -->
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            Volunteers Registration
+                    </div>
+                </ng-template>
+                <marquee direction="left" style="margin-top: 15px; color: #374f74;">
+                    Individuals willing to contribute to a problem statement can register their technical/domain skill sets here.
+                </marquee>
+                <app-collaborate-with-people *ngIf="canLoadContent" [collaborateUsersList]="collaborateUsersList"
+                    (enrollNow)="onClickEnrollNow($event)" (deleteRow)="onClickDeleteRow($event)">
+                </app-collaborate-with-people>
+            </mat-tab>
+        </mat-tab-group>
 
-</section>
+    </section>
 
-<div class="mat_card" *ngIf="!canLoadContent">
-        <mat-spinner aria-label="Please wait..."  color="warn"></mat-spinner>
+    <div class="mat_card" *ngIf="!canLoadContent">
+        <mat-spinner aria-label="Please wait..." color="warn"></mat-spinner>
         <h3 style="margin-top: 20px;">Please wait...</h3>
-</div>
+    </div>
 
-<mat-card *ngIf="successOrErrorMessage" [ngClass]="{'mat_success_card': dataSavedSucessfully, 'mat_error_card': '!dataSavedSucessfully'}">
-    <mat-card-content>
-        <span>{{successOrErrorMessage}}</span>
-    </mat-card-content>
-</mat-card>
+    <mat-card *ngIf="successOrErrorMessage"
+        [ngClass]="{'mat_success_card': dataSavedSucessfully, 'mat_error_card': '!dataSavedSucessfully'}">
+        <mat-card-content>
+            <span>{{successOrErrorMessage}}</span>
+        </mat-card-content>
+    </mat-card>
 </div>

@@ -1,9 +1,9 @@
-<section style="padding: 0 15px;" *ngIf="collaborateUsersList && collaborateUsersList.length">
+<section style="padding: 0 15px; max-height: 550px; overflow-y: scroll;">
     <div class="btn_container">
         <button (click)="onClickEnrollNow()">Enroll Now</button>
     </div>
 
-    <div class="search_div">
+    <div class="search_div" *ngIf="collaborateUsersList && collaborateUsersList.length">
         <form class="example-form">
             <mat-form-field class="example-full-width">
                 <mat-label>Search by Skill Set</mat-label>
@@ -14,14 +14,14 @@
     </div>
     <div style="clear: both"></div>
 
-    <table>
+    <table *ngIf="collaborateUsersList && collaborateUsersList.length">
         <thead>
             <th style="width: 5%;">S.No</th>
             <th style="width: 10%;">Name</th>
             <th style="width: 25%;">Email</th>
             <th style="width: 10%;">Platform</th>
             <th style="width: 10%;">Department</th>
-            <th style="width: 20%;">Required Skill Set</th>
+            <th style="width: 20%;">Skill Set</th>
             <th style="width: 5%;">Action</th>
         </thead>
         <tbody>
@@ -43,13 +43,7 @@
             </tr>
         </tbody>
     </table>
-</section>
 
+    <h3 *ngIf="!collaborateUsersList.length" style="height: 560px; text-align: center; padding-top: 15%;">No Data Found</h3>
 
-<section *ngIf="!collaborateUsersList.length" style="padding: 0 15px;">
-    <div class="btn_container">
-        <button (click)="onClickEnrollNow()">Enroll Now</button>
-    </div>
-    
-    <h3 style="height: 560px; text-align: center; padding-top: 15%;">No Data Found</h3>
 </section>

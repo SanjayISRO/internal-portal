@@ -3,4 +3,6 @@ export const DepartNames = ['Analytics', 'IT Business Apps', 'IT Infrastructure 
 
 export const ContributionTypes = [{ value: 'Connect', key: 'Open to Connect' }, { value: 'Collaborate', key: 'Collaborate with teams' }];
 
-export const GenesysPlatforms = ['Genesys Engage', 'Genesys Cloud', 'Pure Connect']
+export const GenesysPlatforms = ['Genesys Engage', 'Genesys Cloud', 'Pure Connect'];
+
+export const Prioritylist = ['Low', 'Medium', 'High', 'Critical'];

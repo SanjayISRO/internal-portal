@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -21,6 +22,12 @@ import { ButtonComponentComponent } from './components/products/components/butto
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { WorkshopsComponent } from './components/workshops/workshops.component';
 import { FaqsComponent } from './components/faqs/faqs.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
+import { RegisteredIdeasComponent } from './components/registered-ideas/registered-ideas.component';
+
+
 
 
 @NgModule({
@@ -38,6 +45,7 @@ import { FaqsComponent } from './components/faqs/faqs.component';
     ButtonComponentComponent,
     WorkshopsComponent,
     FaqsComponent,
+    RegisteredIdeasComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +55,11 @@ import { FaqsComponent } from './components/faqs/faqs.component';
     BrowserAnimationsModule,
     CarouselModule.forRoot(),
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
+    ModalModule.forRoot(),
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

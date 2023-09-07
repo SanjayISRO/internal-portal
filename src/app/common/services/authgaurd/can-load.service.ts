@@ -13,16 +13,16 @@ export class CanLoadService implements CanLoad {
   }
 
   canLoad(): boolean {
-    const userDetails = JSON.parse(sessionStorage.getItem('userDetails'));
-    if (!userDetails) {
-        this.router.navigateByUrl('login')
-        return false
-    }
-    const loggedInUser = this.appService.getUserListData(userDetails['name']);
-    if (!loggedInUser['isAdmin']) {
-      this.router.navigateByUrl('faq')
-      return false;
-    }
+    // const userDetails = JSON.parse(sessionStorage.getItem('userDetails'));
+    // if (!userDetails) {
+    //     this.router.navigateByUrl('login')
+    //     return false
+    // }
+    // const loggedInUser = this.appService.getUserListData(userDetails['name']);
+    // if (!loggedInUser['isAdmin']) {
+    //   this.router.navigateByUrl('faq')
+    //   return false;
+    // }
     return true
   }
 }

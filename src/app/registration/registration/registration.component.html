@@ -1,0 +1,30 @@
+<section>
+  <div class="container">
+    <mat-form-field class="example-full-width" style="width: 45%;">
+      <mat-label>Event Name</mat-label>
+      <input name="name" matInput autocomplete="off" [(ngModel)]="selectedValue" disabled style="color: #000">
+  </mat-form-field>
+  <!-- <div class="edit_details_container">
+    <input id="checkBoxData" type="checkbox" [(ngModel)]="checkBoxValue"><label for="checkBoxData" style="margin-left: 10px;">Edit Details</label>
+</div> -->
+
+    <div class="form_container">
+    <app-innovation-day-form 
+      *ngIf="selectedValue === eventNames.INNOVATION_DAY" 
+      [eventName]="eventNames.INNOVATION_DAY"
+      (message)="showMessage($event)"
+      [checkBoxValue]="checkBoxValue"
+    ></app-innovation-day-form>
+  </div>
+  </div>
+</section>
+
+
+<mat-card *ngIf="successOrErrorMessage"
+[ngClass]="{'mat_success_card': dataSavedSucessfully, 'mat_error_card': '!dataSavedSucessfully'}">
+<mat-card-content>
+    <span>{{successOrErrorMessage}}</span>
+</mat-card-content>
+</mat-card>
+
+

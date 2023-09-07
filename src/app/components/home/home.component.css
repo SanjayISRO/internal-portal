@@ -59,13 +59,16 @@ button {
   background-attachment: fixed;
   background-position: 0 160px;
   background-repeat: no-repeat;
-  background-size: cover
+  background-size: cover;
+  /* opacity: 0.3; */
+  filter: blur(5px);
 }
 
 .parallax_two {
     background-image: url("../../../assets/images/bg_img_5.png");
     background-position: 0 199px;
     min-height: 700px; 
+    /* opacity: 0.8; */
     /* background-position: 0 360px; */
 }
 
@@ -73,4 +76,59 @@ button {
     position: absolute;
     top: 200px;
     padding: 0 30px;
+}
+
+.admin_btn {
+    border: none;
+    background: none;
+    text-decoration: underline;
+    font-style: italic;
+    cursor: pointer;
+}
+
+.admin_btn:hover {
+    color: #364f74;
+}
+
+.form_input {
+    width: 60%;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #364f74;
+    color: #364f74;
+    padding-bottom: 10px;
+    width: 100%;
+    margin: 15px 0;
+}
+
+.modal-header {
+    background-color: #364f74;
+    color: #fff;
+}
+
+.modal-footer button {
+    width: 100%;
+    color: #364f74;
+    border: 1px solid #364f74;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.modal-footer button:hover {
+    color: #fff;
+    background-color: #364f74;
+}
+
+.disabled_state {
+    cursor: not-allowed;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.btn-close:hover {
+    color: #fff;
+}
+
+.btn-close {
+    outline: none;
 }

@@ -1,6 +1,6 @@
 <header [ngClass]="{'disable_events': isRegisterClicked}">
     <div class="logo_container">
-        <img src="../../../assets/images/logo_gif.gif" alt="logo" height="260">
+        <img src="../../../assets/images/genesys_india_innovations.gif" alt="logo" height="260">
     </div>
     <div class="header_text">
         <!-- <h3 [id]="idValue">
@@ -13,11 +13,17 @@
         <nav>
             <ul style="float: right; margin-right: 20px;">
                 <li><a [ngClass]="{'activeNav': selectedTab === 'home'}" (click)="selectedTab = 'home'"
-                        routerLink="genesysindiahackathon"><i class="fa fa-home"></i>Home</a></li>
-                <li><a [ngClass]="{'activeNav': selectedTab === 'workshops'}" (click)="selectedTab = 'workshops'"
-                        routerLink="workshops"><i class="fa fa-video-camera"></i>Workshops</a></li>
+                        routerLink="genesysindiainnovation"><i class="fa fa-home"></i>Home</a></li>
+                <li><a [ngClass]="{'activeNav': selectedTab === 'workshops'}" (click)="selectedTab = 'videos'"
+                        routerLink="videos"><i class="fa fa-video-camera"></i>Videos</a></li>
                 <li><a [ngClass]="{'activeNav': selectedTab === 'usersList'}" (click)="selectedTab = 'usersList'"
                         routerLink="usersList"><i class="fa fa-handshake-o"></i>Connect & Collaborate</a></li>
+                <!-- <li><a [ngClass]="{'activeNav': selectedTab === 'registrationForm'}"
+                        (click)="selectedTab = 'registrationForm'" routerLink="registrationForm"><i
+                            class="fa fa-file-text"></i>Registration Form</a></li> -->
+                <!-- <li><a [ngClass]="{'activeNav': selectedTab === 'registeredIdeas'}"
+                        (click)="selectedTab = 'registeredIdeas'" routerLink="registeredIdeas"><i
+                            class="fa fa-file-text"></i>Participants List</a></li> -->
                 <li><a [ngClass]="{'activeNav': selectedTab === 'faq'}" (click)="selectedTab = 'faq'"
                         routerLink="faq"><i class="fa fa-question-circle-o"></i>FAQs</a></li>
             </ul>

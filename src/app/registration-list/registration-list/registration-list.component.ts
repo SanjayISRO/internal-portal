@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
 
-import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
-import { ConfirmDeleteComponent } from './components/confirm-delete/confirm-delete.component'
+import { RegistrationFormComponent } from './dialogs/registration-form/registration-form.component';
+import { ConfirmDeleteComponent } from './dialogs/confirm-delete/confirm-delete.component'
 import { UsersObject } from './models/UserList';
 import { AppService } from '../../app.service';
 import { FileSaverService } from './services/file-saver.service';
+import { UserValidationComponent } from './dialogs/user-validation/user-validation.component';
+import { DetailedInfoDialogComponent } from './dialogs/detailed-info-dialog/detailed-info-dialog.component';
 
 
 
@@ -32,7 +34,8 @@ export class RegistrationListComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private fileSaverService: FileSaverService,
-    private appService: AppService
+    private appService: AppService,
+
   ) { }
 
 
@@ -45,23 +48,28 @@ export class RegistrationListComponent implements OnInit {
         this.canLoadContent = true;
       }, 1000)
     }, error => {
-        this.successOrErrorMessage = error
+      this.successOrErrorMessage = error
       this.closeSuccessOrErrorMsg();
       this.canLoadContent = true;
     });
   }
 
 
-  onClickEnrollNow(value: boolean): void {
+  onClickEnrollNow(from: string): void {
     this.appService.setFlagValue(true);
     this.isRegisterClicked = true;
-    const dialogRef = this.dialog.open(RegistrationFormComponent);
+    const dialogRef = this.dialog.open(RegistrationFormComponent, {
+      data: {
+        option: from
+      },
+      width: '850px'
+    });
     dialogRef.afterClosed().subscribe(result => {
       this.isRegisterClicked = false;
       this.canLoadContent = false;
       if (result && typeof result === 'object') {
         this.setValuesToVarialbles('Data saved successfully!!!', true, result.connect, result.collaborate);
-      } 
+      }
       if (result && typeof result === 'string') {
         this.setValuesToVarialbles(result, false, [], []);
       }
@@ -96,22 +104,67 @@ export class RegistrationListComponent implements OnInit {
       this.isRegisterClicked = false;
       this.canLoadContent = false;
       this.fileSaverService.setRowInactive(this.emitedData).subscribe(success => {
-          this.setValuesToVarialbles('Data updated successfully!!!', true, success['data'].connect, success['data'].collaborate);
-          this.callDefaultMethods();
+        this.setValuesToVarialbles('Data updated successfully!!!', true, success['data'].connect, success['data'].collaborate);
+        this.callDefaultMethods();
       }, error => {
-          this.setValuesToVarialbles(error, false, [], []);
-          this.callDefaultMethods();
+        this.setValuesToVarialbles(error, false, [], []);
+        this.callDefaultMethods();
       });
     });
   }
 
   callDefaultMethods() {
     this.appService.scrollToTop();
-      setTimeout(() => {
-        this.canLoadContent = true
-      }, 1000);
-      this.closeSuccessOrErrorMsg();
-      this.appService.setFlagValue(false);
+    setTimeout(() => {
+      this.canLoadContent = true
+    }, 1000);
+    this.closeSuccessOrErrorMsg();
+    this.appService.setFlagValue(false);
+  }
+
+  onClickEditRow(rowItem: UsersObject): void {
+    this.appService.setFlagValue(true);
+    this.isRegisterClicked = true;
+    const dialogRef = this.dialog.open(UserValidationComponent, {
+      data: {
+        value: rowItem
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      switch (result) {
+        case 'close':
+          this.isRegisterClicked = false;
+          this.callDefaultMethods();
+          break;
+        case 'submit':
+          this.openDetailedInfoDialog(true, rowItem);
+          break;
+        case 'open in read only':
+          this.openDetailedInfoDialog(false, rowItem);
+          break;
+      }
+    });
+  }
+
+  openDetailedInfoDialog(flag: boolean, rowItem: UsersObject): void {
+    const dialogRef = this.dialog.open(DetailedInfoDialogComponent, {
+      data: {
+        value: rowItem,
+        editData: flag
+      },
+      width: '1200px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (!result || result === 'close') {
+        this.isRegisterClicked = false;
+        this.callDefaultMethods();
+      }
+      if (result && typeof result === 'object') {
+        this.isRegisterClicked = false;
+        this.setValuesToVarialbles('Data saved successfully!!!', true, result.connect, result.collaborate);
+        this.callDefaultMethods()
+      }
+    });
   }
 
 }

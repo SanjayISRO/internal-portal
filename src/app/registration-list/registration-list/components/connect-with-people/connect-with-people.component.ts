@@ -12,17 +12,20 @@ export class ConnectWithPeopleComponent implements OnInit, OnChanges {
   @Input() connectUsersList: UsersObject[] = [];
   @Output() enrollNow = new EventEmitter();
   @Output() deleteRow = new EventEmitter();
+  @Output() editRow = new EventEmitter();
   searchBySkillSet: string = '';
   filteredResults: UsersObject[] = this.connectUsersList;
 
-  constructor(private fileSaverService: FileSaverService) {}
+  constructor(
+    private fileSaverService: FileSaverService,
+    ) {}
 
   ngOnInit(): void {
     this.searchBySkillSet = '';
   }
 
   filterItem(modelValue: string): void {
-    this.filteredResults = this.fileSaverService.getFilteredValues(this.connectUsersList, modelValue);
+    this.filteredResults = this.fileSaverService.getFilteredValues(this.connectUsersList, modelValue, 'connect');
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -30,7 +33,7 @@ export class ConnectWithPeopleComponent implements OnInit, OnChanges {
   }
 
   onClickEnrollNow(): void {
-    this.enrollNow.emit(true)
+    this.enrollNow.emit('connect')
   }
 
   onClickDelete(rowItem: UsersObject): void {
@@ -39,6 +42,9 @@ export class ConnectWithPeopleComponent implements OnInit, OnChanges {
       rowItem: rowItem
     }
     this.deleteRow.emit(obj);
+  }
+  onClickEdit(rowItem: UsersObject): void {
+    this.editRow.emit(rowItem);
   }
 
 }

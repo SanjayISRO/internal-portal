@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
-import { map } from 'rxjs'
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
 
-  baseUrl: string = 'http://localhost:8080';
+  baseUrl: string = 'http://localhost:8080' || window.location.origin;
+
+  // baseUrl: string = window.location.origin;
+
 
   constructor(private http: HttpClient) { }
 
@@ -28,6 +30,10 @@ export class HttpService {
     return this.http.put(`${this.baseUrl}/${url}`, reqBody).pipe(
       catchError(this.handleError)
     )
+  }
+
+  download(url: string, headers: object): Observable<any> {
+   return this.http.get(`${this.baseUrl}/${url}`, headers)
   }
 
   handleError(error: HttpErrorResponse) {

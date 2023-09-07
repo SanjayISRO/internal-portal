@@ -1,0 +1,259 @@
+<mat-card>
+    <!-- <div > -->
+    <h3 style="text-align: center;" mat-dialog-title>{{data.value.title}}</h3>
+    <!-- <h4 class="modal-title pull-left">User Registration Form</h4> -->
+    <!-- </div> -->
+
+    <mat-card-content class="modal-body mat-typography" style="padding: 20px;" *ngIf="!showLogs">
+        <div class="row">
+            <div class="col-md-6">
+                <div>
+                    <label><strong>Created By :</strong></label><span>{{data.value.name}}</span>
+                </div>
+                <div class="mar-top15">
+                    <label><strong>Created At :</strong></label><span>{{data.value.createdDateAndTime}}</span>
+                </div>
+                <div class="mar-top15" *ngIf="data.value.createdDateAndTime !== data.value.lastModifiedDateAndTime">
+                    <label><strong>Last Modified At
+                            :</strong></label><span>{{data.value.lastModifiedDateAndTime}}</span>
+                </div>
+                <div class="mar-top15">
+                    <label><strong>Platform :</strong></label><span>{{data.value.genPlatform}}</span>
+                </div>
+                <div class="mar-top15">
+                    <label><strong>Department :</strong></label><span>{{data.value.department}}</span>
+                </div>
+               
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div>
+                        <mat-form-field class="select_field" *ngIf="data.editData">
+                            <mat-label>Status</mat-label>
+                            <mat-select [(ngModel)]="selectedStatus" name="status">
+                                <mat-option *ngFor="let status of listofStatus" [value]="status">
+                                    {{status}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <!-- <div>
+                        <mat-form-field class="select_field" *ngIf="data.editData">
+                            <mat-label>Priority Level</mat-label>
+                            <mat-select [(ngModel)]="selectedPriority" name="priority">
+                                <mat-option *ngFor="let priority of priorityList" [value]="priority">
+                                    {{priority}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div> -->
+                </div>
+                
+
+                <div *ngIf="!data.editData" style="float: right; margin-right: 30px;">
+                    <div>
+                        <label style="width: 70px;"><strong>Status :</strong></label>
+                        <span>{{data.value.status}}</span>
+                    </div>
+                    <!-- <div class="mar-top15">
+                        <label style="width: 70px;"><strong>Priority:</strong></label>
+                        <span>{{data.value.priorityLevel}}</span>
+                    </div> -->
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+        <div class="row mar-top15" *ngIf="data.editData">
+            <div style="width: 11%;"><strong>Keywords :</strong></div>
+            <div style="width: 89%;">
+                <mat-form-field appearance="fill" class="example-form-field" style="width: 100%; margin-top: 10px;">
+                    <mat-chip-grid #chipGrid aria-label="Enter keywords">
+                        <mat-chip-row *ngFor="let keyword of listOfKeywords" (removed)="removeKeyword(keyword)">
+                            {{keyword}}
+                            <button matChipRemove aria-label="'remove ' + keyword">
+                                <mat-icon class="mat_close_icon">x</mat-icon>
+                            </button>
+                        </mat-chip-row>
+                    </mat-chip-grid>
+                    <input placeholder="Press enter after typing the value" [matChipInputFor]="chipGrid"
+                        (matChipInputTokenEnd)="add($event)" autocomplete="off" />
+                    <mat-error>
+                        Keywords
+                        <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="mar-top15 row" *ngIf="!data.editData">
+            <label style="width: 11%;"><strong>Keywords :</strong></label>
+            <div style="width: 89%;">
+                <!-- <ng-container *ngIf="data.value.skillSet.length > 1 else singleSkillTemplate"> -->
+                    <ng-container *ngFor="let keywords of data.value.skillSet; let i = index">
+                        <!-- <span>{{keywords}}<ng-container *ngIf="i + 1 !== data.value.skillSet.length">,
+                            </ng-container></span> -->
+                            <button style="margin-right: 5px; cursor: default;" mat-raised-button>{{keywords}}</button>
+                    </ng-container>
+                <!-- </ng-container> -->
+                <!-- <ng-template #singleSkillTemplate>{{data.value.skillSet}}</ng-template> -->
+            </div>
+            
+        </div>
+        <div class="row mar-top15">
+            <div><strong>Problem Statement :</strong></div>
+            <div *ngIf="!data.editData" class="mar-top15">{{data.value.problemStatement}}</div>
+            <div *ngIf="data.editData" class="mar-top15">
+                <textarea name="textContent" id="textContent" style="width: 100%;" rows="10"
+                    [(ngModel)]="textContent"></textarea>
+            </div>
+        </div>
+
+        <div class="row mar-top15">
+            <div class="row">
+                <h3 class="col-md-2">Team Members</h3>
+                <button *ngIf="data.editData" class="col-md-1" mat-raised-button color="accent"
+                    (click)="onClickAddMembers()">Add</button>
+            </div>
+            <ng-container *ngIf="data.editData && listOfTeamMembers && listOfTeamMembers.length">
+                <ng-container *ngFor="let member of listOfTeamMembers; let i = index;">
+                    <div class="row mar-top15">
+                        <div class="col-md-3">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Name</mat-label>
+                                <input (change)="canEnableSaveBtn()" name="name" [(ngModel)]="member.name" matInput
+                                    autocomplete="off" required>
+                            </mat-form-field>
+                            <p class="error_msg" *ngIf="!member.name">
+                                Name is
+                                <strong>required</strong>
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Email</mat-label>
+                                <input (change)="canEnableSaveBtn()" name="email" [(ngModel)]="member.email" matInput
+                                    autocomplete="off" required>
+                            </mat-form-field>
+                            <p class="error_msg" *ngIf="!member.email">
+                                email is
+                                <strong>required</strong>
+                            </p>
+                        </div>
+                        <div class="col-md-2">
+                            <mat-form-field style="width: 100%;">
+                                <mat-label>Genesys Platform</mat-label>
+                                <mat-select (selectionChange)="canEnableSaveBtn()" [(ngModel)]="member.genPlatform"
+                                    name="genPlatform" required>
+                                    <mat-option *ngFor="let genPlatform of genesysPlatformsList" [value]="genPlatform">
+                                        {{genPlatform}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <p class="error_msg" *ngIf="!member.genPlatform">
+                                Genesys Platform is
+                                <strong>required</strong>
+                            </p>
+                        </div>
+                        <div class="col-md-2">
+                            <mat-form-field style="width: 100%;">
+                                <mat-label>Department</mat-label>
+                                <mat-select (selectionChange)="canEnableSaveBtn()" [(ngModel)]="member.department"
+                                    name="department" required>
+                                    <mat-option *ngFor="let department of listOfDepartments" [value]="department">
+                                        {{department}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <p class="error_msg" *ngIf="!member.department">
+                                Department is
+                                <strong>required</strong>
+                            </p>
+                        </div>
+
+                        <div class="col-md-1 delete_icon">
+                            <mat-icon class="fa fa-trash" (click)="onClickTrash(i)"></mat-icon>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-container>
+            <ng-container *ngIf="!data.editData && listOfTeamMembers && listOfTeamMembers.length">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 6%;">S.No</th>
+                            <th style="width: 12%;">Name</th>
+                            <th style="width: 25%;">Email</th>
+                            <th style="width: 15%;">Genesys Platform</th>
+                            <th style="width: 15%;">Department</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let member of listOfTeamMembers; let i = index;">
+                            <td style="width: 6%;">{{i + 1}}</td>
+                            <td style="width: 12%;">{{member.name}}</td>
+                            <td style="width: 25%;">{{member.email}}</td>
+                            <td style="width: 15%;">{{member.genPlatform}}</td>
+                            <td style="width: 15%;">{{member.department}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </ng-container>
+            <ng-container *ngIf="!listOfTeamMembers || !listOfTeamMembers.length">
+                <!-- <img src="../../../../../assets/images/no_record_found.gif" alt="no records found" style="width: 50%;"> -->
+                <img src="../../../../../assets/images/no_data_found.jpg" alt="no records found" style="width: 50%;">
+
+                <p style="font-weight: bold;" class="mar-top15">No records to display</p>
+            </ng-container>
+        </div>
+
+    </mat-card-content>
+
+    <mat-card-content class="modal-body mat-typography" style="padding: 20px;" *ngIf="showLogs">
+        <ng-container *ngFor="let data of logData">
+            <mat-accordion>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title style="font-weight: bolder;">
+                            {{data?.date}}
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            {{data?.value.length}} Changes were made.
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <table>
+                        <thead>
+                            <th style="width: 6%;">S.No</th>
+                            <th style="width: 20%;">Field Name</th>
+                            <th style="width: 25%;">Initial Value</th>
+                            <th style="width: 25%;">Modified Value</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let changes of data.value; let i =index;">
+                                <td style="width: 6%;">{{i + 1}}</td>
+                                <td style="width: 20%;">{{changes.fieldName}}</td>
+                                <td style="width: 25%; color: red; text-decoration: line-through;">
+                                    {{changes.initialValue}}</td>
+                                <td style="width: 25%; color: green;">{{changes.changedValue}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </ng-container>
+    </mat-card-content>
+
+    <mat-card-actions class="mar-top15">
+        <button style="width: 250px;" mat-stroked-button color="primary" *ngIf="!showLogs && logData.length"
+            (click)="showLogs = true">View Change Logs</button>
+        <div style="width: 100%;">
+            <ng-container *ngIf="!showLogs">
+                <button *ngIf="data.editData" mat-raised-button color="primary"
+                    [disabled]="!listOfKeywords.length || !textContent || !enableSaveBtn"
+                    (click)="onClickSave()">Save</button>
+                <button style="margin-right: 15px;" mat-raised-button color="warn"
+                    (click)="onClickClose()">Close</button>
+            </ng-container>
+            <button *ngIf="showLogs" mat-stroked-button color="accent" (click)="showLogs = false">Back</button>
+        </div>
+    </mat-card-actions>
+
+</mat-card>

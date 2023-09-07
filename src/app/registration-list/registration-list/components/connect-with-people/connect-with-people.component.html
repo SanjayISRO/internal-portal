@@ -1,11 +1,11 @@
-<section style="padding: 0 15px;" *ngIf="connectUsersList && connectUsersList.length">
+<section style="padding: 0 15px; max-height: 550px; overflow-y: scroll;">
     <div class="btn_container">
-        <button (click)="onClickEnrollNow()">Enroll Now</button>
+        <button (click)="onClickEnrollNow()">Add</button>
     </div>
-    <div class="search_div">
+    <div class="search_div" *ngIf="connectUsersList && connectUsersList.length ">
         <form class="example-form">
             <mat-form-field class="example-full-width">
-                <mat-label>Search by Skill Set</mat-label>
+                <mat-label>Search by Keywords</mat-label>
                 <input name="searchBySkillSet" [(ngModel)]="searchBySkillSet" style="color: #364f74;" matInput
                     autocomplete="off" (input)="filterItem(searchBySkillSet)">
             </mat-form-field>
@@ -13,24 +13,25 @@
     </div>
     <div style="clear: both"></div>
 
-    <table>
+    <table *ngIf="connectUsersList && connectUsersList.length ">
         <thead>
-            <th style="width: 5%;">S.No</th>
-            <th style="width: 10%;">Name</th>
-            <th style="width: 22%;">Email</th>
-            <th style="width: 10%;">Platform</th>
-            <th style="width: 10%;">Department</th>
-            <th style="width: 20%;">Skill Set</th>
+            <th style="width: 3%; padding-right: 0;">S.No</th>
+            <th style="width: 21%;">Title</th>
+            <!-- <th style="width: 10%;">Name</th> -->
+            <th style="width: 10%;">Platform - Department</th>
+            <th style="width: 10%;">Keyword(s)</th>
+            <th style="width: 12%;">Owner</th>
+            <th style="width: 6%;">Status</th>
             <th style="width: 5%;">Action</th>
         </thead>
         <tbody>
             <tr *ngFor="let row of filteredResults; let i = index">
-                <td style="width: 5%;">{{i + 1}}</td>
-                <td style="width: 10%;">{{row.name}}</td>
-                <td style="width: 22%;">{{row.email}}</td>
-                <td style="width: 10%;">{{row.genPlatform}}</td>
-                <td style="width: 10%;">{{row.department}}</td>
-                <td style="width: 20%;">
+                <td style="width: 3%;">{{i + 1}}</td>
+                <!-- <td style="width: 21%;"><i class="fa fa-circle" [ngClass]="{'critical': row.priorityLevel === 'Critical', 'high':  row.priorityLevel === 'High', 'medium':  row.priorityLevel === 'Medium', 'low':  row.priorityLevel === 'Low'}" #tooltip="matTooltip" [matTooltip]="row.priorityLevel" matTooltipPosition="above" style="cursor: pointer; padding-right: 10px;"></i>{{row.title}}</td> -->
+                <!-- <td style="width: 10%;">{{row.name}}</td> -->
+                <td style="width: 21%;">{{row.title}}</td>
+                <td style="width: 10%;">{{row.genPlatform}} - {{row.department}}</td>
+                <td style="width: 10%;">
                     <ng-container *ngIf="row.skillSet.length > 1 else singleSkillTemplate">
                         <ng-container *ngFor="let skill of row.skillSet; let i = index">
                             {{skill}} <ng-container *ngIf="i + 1 !== row.skillSet.length">,</ng-container>
@@ -38,17 +39,17 @@
                     </ng-container>
                     <ng-template #singleSkillTemplate>{{row.skillSet}}</ng-template>
                 </td>
-                <td class="delete_icon" style="width: 5%;"><i (click)="onClickDelete(row)" class="fa fa-trash" aria-hidden="true"></i></td>
+                <td style="width: 12%;">{{row.email}}</td>
+                <td style="width: 6%;">{{row.status}}</td>
+                <td style="width: 5%;">
+                    <i (click)="onClickEdit(row)" class="fa fa-edit edit_icon" aria-hidden="true"></i>
+                    <i (click)="onClickDelete(row)" class="fa fa-trash delete_icon" aria-hidden="true"></i>
+                </td>
                 <!-- <td style="width: 15%;">{{row.expertise}}</td> -->
             </tr>
         </tbody>
     </table>
-</section>
 
-<section *ngIf="!connectUsersList.length" style="padding: 0 15px;">
-    <div class="btn_container">
-        <button (click)="onClickEnrollNow()">Enroll Now</button>
-    </div>
-    
-    <h3 style="height: 560px; text-align: center; padding-top: 15%;">No Data Found</h3>
+    <h3 *ngIf="!connectUsersList.length" style="height: 560px; text-align: center; padding-top: 15%;">No Data Found</h3>
+
 </section>

@@ -1,0 +1,112 @@
+.mar-top15 {
+    margin-top: 15px;
+}
+label {
+    width: 130px;
+}
+
+.select_field {
+    width: 50%;
+    float: right;
+}
+
+mat-card-content {
+    min-height: 300px;
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
+mat-card-actions button {
+    padding: 20px;
+    width: 150px;
+    float: right;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.delete_icon {
+    padding: 15px 30px;
+    color: red;
+}
+
+.fa-trash {
+    font-size: 25px;
+}
+
+.error_msg {
+    color: red;
+}
+
+:host >>> .mat-mdc-chip-action-label{
+    color: #364f74 !important;
+    font-size: 15px !important;
+}
+
+:host >>> .mat_close_icon {
+    margin-top: -4px !important;
+    font-weight: bolder !important;
+    margin-left: -6px !important;
+    color: #364f74 !important;
+    font-size: 20px !important;
+}
+
+:host >>> mat-chip-row {
+    background-color: #fff !important;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table td,
+  table th {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: left;
+    word-break: break-word;
+  }
+  
+  tbody {
+    display: block;
+    /* height: 522px; */
+    overflow: auto;
+  }
+  thead,
+  tbody tr {
+    display: table;
+    width: 100%;
+  }
+  
+  th {
+    background: #364f74;
+    color: #fff;
+  }
+  
+  th:hover {
+    color: #ff4f1f;
+  }
+  
+  tr:hover {
+    background-color: #f2f2f2;
+  }
+
+  h3 {
+    font-weight: bold;
+  }
+
+  /* :host>>> .mat-expansion-panel-body {
+    max-height: 250px !important;
+    overflow-y: scroll !important;
+  } */
+
+  thead {
+    position: sticky;
+  }
+
+  tbody {
+    max-height: 300px;
+    overflow-y: scroll;
+  }

@@ -1,0 +1,37 @@
+.invalidState {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.validState {
+    cursor: pointer;
+    opacity: 1;
+}
+
+.mat_card {
+    max-width: 300px;
+    position: absolute;
+    top: 40%;
+    left: 45%;
+    padding: 40px;
+    text-align: center;
+}
+
+textarea {
+    resize: none;
+}
+
+mat-spinner {
+    margin-left: 20px;
+}
+
+.word_limit {
+    float: right;
+    /* margin-right: -5%; */
+    color: #374f74;
+}
+
+.edit_button {
+    margin-left: 15px;
+    vertical-align: super;
+}

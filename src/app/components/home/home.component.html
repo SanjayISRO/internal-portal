@@ -4,7 +4,7 @@
 
 <section class="home_container">
 
-  <h4 class="align_text">Get set to hack your way to Glory with your fellow <em>Genesysians !!!</em></h4>
+  <!-- <h4 class="align_text">Get set to hack your way to Glory with your fellow <em>Genesysians !!!</em></h4> -->
 
   <div style="text-align: center; margin-top: 30px;">
     <!-- <img class="banner" src="../../../assets/images/banner_img.png" alt=""> -->
@@ -38,64 +38,57 @@
 
   </div>
 
-
-  <p>The Genesys India Hackathon 2023 is an exciting initiative aimed at enabling all Genesys India employees to align
-    themselves with the organization's strategy by exploring the capabilities of the Genesys Cloud product. The
-    hackathon's main purpose is to foster collaboration among cross-functional teams and create an atmosphere of
-    innovation and creativity. The caption "Connect", "Collaborate", "Create", and "Conquer" emphasizes the portal's
-    purpose of facilitating connections and collaborations among employees and empowering them to create innovative
-    solutions.</p>
-
-  <p>The hackathon's portal provides employees with a platform to connect and collaborate with one another. Individuals
-    interested in connecting can enroll themselves by mentioning their skill set or domain knowledge, while teams
-    seeking
-    specific skill sets can enroll about their teams and the skill sets they are looking for. This platform empowers
-    employees to collaborate and share ideas with individuals from different functional units, thereby gaining new
-    perspectives and insights.</p>
-
-  <p>In addition to the collaboration platform, the key highlight of the hackathon is the series of enablement workshops
-    on various topics related to the Genesys Cloud products. These workshops are designed to provide employees with the
-    basic knowledge and skills about the Genesys Cloud product and from there on we can explore further and create
-    innovative solutions. The recorded workshop videos are also made available to all employees under the Workshops
-    section for reference and learning purposes.</p>
-
-  <p>The Genesys India Hackathon 2023 is an excellent opportunity for all employees to come together and collaborate
-    towards achieving the organization's goals. By connecting and collaborating with one another, employees can leverage
-    their skills and domain knowledge to create innovative solutions that can help the organization conquer new heights.
-    The hackathon's success will depend on the active participation of all employees, as together, they can achieve more
-    and create a better future for themselves and the organization.</p>
-
-  <p style="margin-top: 20px;">The Genesys India Hackathon is here. It is time to display your innovative mindset with
-    pride.
-
-    <!-- <ul>
-    <li *ngFor="let value of listOfObjectives"><span appHighLighter>{{value.key}} </span>{{value.info}}</li>
-  </ul> -->
+  <!-- <app-array-iterator [listOfObjectives]="listOfObjectives"></app-array-iterator> -->
 
 
+  <p>Genesys India Innovation Portal is a dynamic platform that fosters innovation and creativity among employees. The
+    portal offers a comprehensive approach to inspire and enable innovation across the organisation. The portal serves
+    as the central hub where employees can find the announcements about the innovation events, providing employees with
+    a holistic view of the ongoing innovation initiatives within Genesys India. It serves as a one-stop destination for
+    employees to stay updated and engaged with the latest innovation activities.</p>
 
+  <p>The Videos tab is a treasure trove of learning resources. With an event dropdown, employees can easily access
+    videos related to specific innovation events. These videos serve as valuable knowledge assets, enabling employees to
+    learn from industry experts, gain insights, and enhance their skills. The Videos section empowers employees to
+    upskill and stay updated with the latest trends and technologies.</p>
 
-    <app-array-iterator [listOfObjectives]="listOfObjectives"></app-array-iterator>
+  <p>The Registration section of the portal provides a seamless process for employees to register for various innovation
+    events. Employees can easily browse through the available events, select the ones that align with their interests
+    and skillsets, and register for participation. This section streamlines the registration process, making it
+    convenient for employees to express their interest in various innovation initiatives.</p>
 
+  <p>The FAQs section of the portal addresses common questions that employees may have about the innovation events. It
+    provides a repository of frequently asked questions, clarifying doubts and providing relevant information. This
+    section acts as a quick reference for employees, ensuring that they have all the necessary information to actively
+    participate in the innovation events.</p>
 
-  <p>This <i>Hackathon</i> is open to all Genesys India employees. The main objective of this hackathon is to enable our
-    Genesys India to understand about <b>Genesys Cloud Products</b> aligning with the organization stratergies</p>
+  <p>The Genesys India Innovation Portal is a comprehensive platform that promotes innovation and
+    collaboration among employees. The portal offers a holistic approach towards fostering innovation across the
+    organisation. It enables employees to access information, learn from videos, register for events, and find answers
+    to their queries, thereby empowering them to actively participate in the innovation journey of Genesys India.</p>
 
-  <p>As part of this Hackathon the committee has decided to conduct series of workshops which will introduce all the
-    employess to various Genesys Cloud Products</p>
+  <!-- <p>Admins can view the nominations by<button (click)="onClickAdminBtn(modalTemplate)" class="admin_btn">clicking
+      here</button></p> -->
 
-  <p>The Genesys India Hackathon enablement sessions will start before end of February </p>
-
-
-  <!-- <ul>
-  <li *ngFor="let value of listOfNumbers">{{value | currencyValue:'IN'}}</li>
-</ul>
-
-
-
-<ul>
-  <li *ngFor="let value of listOfNumbers">{{value | currencyValue:'US'}}</li>
-</ul> -->
 
 </section>
 
+<ng-template #modalTemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Verification Form</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      X
+    </button>
+  </div>
+  <div class="modal-body" style="margin: 0;">
+    <h6 style="color: red;" *ngIf="errorMessage">{{errorMessage}}</h6>
+    <input class="form_input" type="text" name="userName" id="userName" placeholder="Please enter User Name"
+      [(ngModel)]="userName" autocomplete="off">
+    <input class="form_input" type="password" name="password" id="password" [(ngModel)]="password"
+      placeholder="Please enter Password" autocomplete="off">
+  </div>
+  <div class="modal-footer">
+    <button type="button" [ngClass]="{'disabled_state': !userName || !password}" [disabled]="!userName || !password"
+      (click)="onClickSubmit()">Submit</button>
+  </div>
+</ng-template>

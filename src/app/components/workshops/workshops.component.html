@@ -1,14 +1,24 @@
 <section class="workshop_conatiner">
-    
-    <h3><strong>Workshop 1</strong> - Genesys Cloud Voice Service</h3>
 
-    <section class="video_container">
+    <!-- <marquee direction="left" style="margin-top: 15px;"><strong>Upcoming workshop</strong> - Genesys Cloud Digital Services on 22nd March</marquee> -->
 
-        <video class="video_styles" controls>
-            <source src="../../../assets/videos/first_workshop.mp4" type="video/mp4">
-            Your browser does not support HTML video.
-        </video>
 
-    </section>
+    <mat-form-field appearance="fill" style="width: 25%;">
+        <mat-label>Event Name</mat-label>
+        <mat-select [(ngModel)]="selectedEventName">
+            <mat-option *ngFor="let eventName of workshopLables" [value]="eventName">
+                {{eventName}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
 
+    <ng-container *ngFor="let data of workshopData[selectedEventName]; let i = index"> 
+        <h5>{{data.title}}</h5>
+        <section class="video_container">
+            <video class="video_styles" controls>
+                <source [src]="data.path" type="video/mp4">
+                Your browser does not support HTML video.
+            </video>
+        </section>
+    </ng-container>
 </section>
