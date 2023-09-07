@@ -1,0 +1,4 @@
+
+<ul *ngIf="listOfObjectives && listOfObjectives.length">
+    <li *ngFor="let value of listOfObjectives"><span appHighLighter>{{value.key | uppercase}} </span>{{value.info}}</li>
+  </ul>

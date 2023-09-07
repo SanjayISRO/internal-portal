@@ -1,0 +1,54 @@
+<section style="padding: 0 15px;" *ngIf="connectUsersList && connectUsersList.length">
+    <div class="btn_container">
+        <button (click)="onClickEnrollNow()">Enroll Now</button>
+    </div>
+    <div class="search_div">
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+                <mat-label>Search by Skill Set</mat-label>
+                <input name="searchBySkillSet" [(ngModel)]="searchBySkillSet" style="color: #364f74;" matInput
+                    autocomplete="off" (input)="filterItem(searchBySkillSet)">
+            </mat-form-field>
+        </form>
+    </div>
+    <div style="clear: both"></div>
+
+    <table>
+        <thead>
+            <th style="width: 5%;">S.No</th>
+            <th style="width: 10%;">Name</th>
+            <th style="width: 22%;">Email</th>
+            <th style="width: 10%;">Platform</th>
+            <th style="width: 10%;">Department</th>
+            <th style="width: 20%;">Skill Set</th>
+            <th style="width: 5%;">Action</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of filteredResults; let i = index">
+                <td style="width: 5%;">{{i + 1}}</td>
+                <td style="width: 10%;">{{row.name}}</td>
+                <td style="width: 22%;">{{row.email}}</td>
+                <td style="width: 10%;">{{row.genPlatform}}</td>
+                <td style="width: 10%;">{{row.department}}</td>
+                <td style="width: 20%;">
+                    <ng-container *ngIf="row.skillSet.length > 1 else singleSkillTemplate">
+                        <ng-container *ngFor="let skill of row.skillSet; let i = index">
+                            {{skill}} <ng-container *ngIf="i + 1 !== row.skillSet.length">,</ng-container>
+                        </ng-container>
+                    </ng-container>
+                    <ng-template #singleSkillTemplate>{{row.skillSet}}</ng-template>
+                </td>
+                <td class="delete_icon" style="width: 5%;"><i (click)="onClickDelete(row)" class="fa fa-trash" aria-hidden="true"></i></td>
+                <!-- <td style="width: 15%;">{{row.expertise}}</td> -->
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section *ngIf="!connectUsersList.length" style="padding: 0 15px;">
+    <div class="btn_container">
+        <button (click)="onClickEnrollNow()">Enroll Now</button>
+    </div>
+    
+    <h3 style="height: 560px; text-align: center; padding-top: 15%;">No Data Found</h3>
+</section>

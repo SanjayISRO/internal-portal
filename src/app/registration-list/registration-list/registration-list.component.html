@@ -1,0 +1,38 @@
+<div style="padding: 10px 30px;"><section [ngClass]="{'add_opacity': isRegisterClicked}">
+
+    <mat-tab-group>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <div class="tab_title">
+                    <img src="../../../assets/images/connect.png" width="40" height="40">Open to connect
+                </div>
+            </ng-template>
+            <app-connect-with-people *ngIf="canLoadContent" [connectUsersList]="connectUsersList" (enrollNow)="onClickEnrollNow($event)" (deleteRow)="onClickDeleteRow($event)">
+            </app-connect-with-people>
+        </mat-tab>
+
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <div class="tab_title">
+                    <img src="../../../assets/images/collaborate.png" width="30" height="30"
+                        style="padding-right: 10px">Collaborate With Teams
+                </div>
+            </ng-template>
+            <app-collaborate-with-people *ngIf="canLoadContent" [collaborateUsersList]="collaborateUsersList" (enrollNow)="onClickEnrollNow($event)" (deleteRow)="onClickDeleteRow($event)">
+            </app-collaborate-with-people>
+        </mat-tab>
+    </mat-tab-group>
+
+</section>
+
+<div class="mat_card" *ngIf="!canLoadContent">
+        <mat-spinner aria-label="Please wait..."  color="warn"></mat-spinner>
+        <h3 style="margin-top: 20px;">Please wait...</h3>
+</div>
+
+<mat-card *ngIf="successOrErrorMessage" [ngClass]="{'mat_success_card': dataSavedSucessfully, 'mat_error_card': '!dataSavedSucessfully'}">
+    <mat-card-content>
+        <span>{{successOrErrorMessage}}</span>
+    </mat-card-content>
+</mat-card>
+</div>

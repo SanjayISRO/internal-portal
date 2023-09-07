@@ -1,0 +1,29 @@
+mat-card {
+    max-width: 500px;
+}
+
+mat-card-title {
+    font-weight: bold;
+}
+
+mat-card-header {
+    padding: 15px;
+    background: #4e6283;
+    color: #fff;
+}
+
+button {
+    margin-left: 15px;
+    background: #4e6283;
+    color: #fff;
+    padding: 6px;
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+}
+
+.btn_close {
+    background: transparent;
+    color: #4e6283;
+    border: 2px solid #4e6283;
+}

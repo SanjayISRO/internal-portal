@@ -1,0 +1,102 @@
+* {
+    box-sizing: border-box;
+}
+.form_container {
+    width: 100%;
+    min-height: 450px;
+    border: 1px solid black;
+    background-color: #fff;
+    margin: 0 auto;
+    /* padding-top: 40px; */
+}
+
+.align_center {
+    text-align: center;
+}
+
+.sign_in, .new_account {
+    width: 50%;
+    float: left;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 20px;
+    color: #fff;
+    cursor: pointer;
+    background-color: #364f74;
+}
+
+.new_account {
+    float: right;
+}
+
+.container {
+    width: 30%;
+    padding-top: 100px;
+}
+
+form {
+    margin: 0 auto;
+    width: 80%;
+    transition-timing-function: linear;
+    /* font-size: 20px; */
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    border: 2px solid #364f74;
+    height: 35px;
+    outline: none;
+    margin: 20px 0 5px 0;
+}
+
+input[type="checkbox"] {
+    margin: 20px 0 0 0;
+
+}
+
+
+form div {
+    margin-top: 15px;
+}
+
+form label {
+    font-weight: bold;
+}
+
+.selected {
+    color: #364f74;
+    background-color: #fff;
+    cursor: pointer;
+    border-bottom: 2px solid #ff4f1f;
+}
+
+span {
+    padding-left: 10px;
+    color: #364f74;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    color: #fff;
+    background-color: #364f74;
+    cursor: pointer;
+}
+
+.error {
+    color: red;
+    padding: 0;
+}
+
+.errorBorder {
+    border-left: 7px solid #dc4040 !important;
+    border-radius: 5px;
+}
+
+.successBorder {
+    border-left: 7px solid green !important;
+    border-radius: 5px;
+}
+
+

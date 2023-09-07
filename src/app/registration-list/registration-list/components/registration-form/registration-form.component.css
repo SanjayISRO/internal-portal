@@ -1,0 +1,81 @@
+.btn {
+    border: 1px solid #ff4f1f;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+form {
+    overflow-y: scroll;
+    /* height: 350px; */
+}
+
+:host >>> mat-form-field .mdc-text-field--filled,
+:host >>> mat-form-field .mdc-text-field--filled:hover,
+:host >>> mat-form-field .mdc-text-field--filled:focus {
+    background-color: transparent !important;
+}
+
+.button {
+    width: 100%;
+    padding: 10px;
+    color: #fff;
+    background-color: #364f74;
+    cursor: pointer;
+}
+
+.modal-header {
+    background-color: #374f74;
+    color: #fff;
+}
+
+.btn_close_modal {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 25px;
+}
+
+.btn_close_modal:hover {
+    transform: scale(1.3);
+}
+
+mat-card {
+    max-width: 500px;
+}
+
+mat-card-title {
+    font-weight: bold;
+}
+
+.connect_form_height {
+    height: 400px;
+}
+
+.collaborate_form_height {
+    height: 290px;
+}
+
+:host >>> .mat-mdc-chip-action-label{
+    color: #fff !important;
+    font-size: 15px !important;
+}
+
+:host >>> .mat_close_icon {
+    margin-top: -4px !important;
+    font-weight: bolder !important;
+    margin-left: -6px !important;
+    color: #fff !important;
+    font-size: 20px !important;
+}
+
+:host >>> mat-chip-row {
+    background-color: #364f74 !important;
+}
