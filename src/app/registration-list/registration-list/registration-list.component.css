@@ -1,0 +1,319 @@
+section {
+ 
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 2px 2px #3f51b5;
+  /* padding: 10px 30px; */
+  height: 750px;
+
+}
+
+.sign_in,
+.new_account {
+  width: 50%;
+  float: left;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  font-size: 20px;
+  color: #fff;
+  cursor: pointer;
+  background-color: #364f74;
+}
+
+.new_account {
+  float: right;
+}
+
+.selected {
+  color: #364f74;
+  background-color: #fff;
+  cursor: pointer;
+  border-bottom: 2px solid #ff4f1f;
+}
+
+.align_center {
+  text-align: center;
+}
+
+.search_div {
+  float: right;
+  padding: 10px 0 20px;
+  width: 30%;
+}
+
+/* input {
+    height: 30px;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #ff4f1f;
+    outline: none;
+} */
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+/* :host >>> .mat-mdc-form-field-infix .mdc-floating-label {
+    color: #ff4f1f !important;
+  } */
+
+table {
+  max-height: 100px;
+  height: 100px;
+  overflow-y: scroll;
+}
+
+.tab_title:hover {
+  transform: scale(1.2);
+  transition: 0.5s;
+  z-index: 100;
+}
+
+.glowing-btn {
+  position: relative;
+  color: #374f74;
+  cursor: pointer;
+  padding: 5px;
+  border: 0.3em solid #374f74;
+  border-radius: 0.45em;
+  background: #fff;
+  perspective: 60px;
+  font-family: "Raleway", sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 15px;
+
+  -webkit-box-shadow: inset 0px 0px 0.5em 0px #374f74, 0px 0px 0.5em 0px #374f74;
+  -moz-box-shadow: inset 0px 0px 0.5em 0px #374f74, 0px 0px 0.5em 0px #374f74;
+  box-shadow: inset 0px 0px 0.5em 0px #374f74, 0px 0px 0.5em 0px #374f74;
+  animation: border-flicker 2s linear infinite;
+}
+
+.glowing-txt {
+  float: left;
+  margin-right: -0.8em;
+  -webkit-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em #374f74;
+  -moz-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em #374f74;
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em #374f74;
+  animation: text-flicker 3s linear infinite;
+}
+
+.faulty-letter {
+  opacity: 0.5;
+  animation: faulty-flicker 2s linear infinite;
+}
+
+.glowing-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.7;
+  filter: blur(1em);
+  transform: translateY(120%) rotateX(95deg) scale(1, 0.35);
+  background: #374f74;
+  pointer-events: none;
+}
+
+.glowing-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  z-index: -1;
+  background-color: #374f74;
+  box-shadow: 0 0 2em 0.2em #374f74;
+  transition: opacity 100ms linear;
+}
+
+.glowing-btn:hover {
+  color: #fff;
+  text-shadow: none;
+  animation: none;
+}
+
+.glowing-btn:hover .glowing-txt {
+  animation: none;
+}
+
+.glowing-btn:hover .faulty-letter {
+  animation: none;
+  text-shadow: none;
+  opacity: 1;
+}
+
+.glowing-btn:hover:before {
+  filter: blur(1.5em);
+  opacity: 1;
+}
+
+.glowing-btn:hover:after {
+  opacity: 1;
+}
+
+@keyframes faulty-flicker {
+  0% {
+    opacity: 0.1;
+  }
+  2% {
+    opacity: 0.1;
+  }
+  4% {
+    opacity: 0.5;
+  }
+  19% {
+    opacity: 0.5;
+  }
+  21% {
+    opacity: 0.1;
+  }
+  23% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.5;
+  }
+  83% {
+    opacity: 0.4;
+  }
+
+  87% {
+    opacity: 1;
+  }
+}
+
+@keyframes text-flicker {
+  0% {
+    opacity: 0.1;
+  }
+
+  2% {
+    opacity: 1;
+  }
+
+  8% {
+    opacity: 0.1;
+  }
+
+  9% {
+    opacity: 1;
+  }
+
+  12% {
+    opacity: 0.1;
+  }
+  20% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.3;
+  }
+  30% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 0.7;
+  }
+  72% {
+    opacity: 0.2;
+  }
+
+  77% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes border-flicker {
+  0% {
+    opacity: 0.1;
+  }
+  2% {
+    opacity: 1;
+  }
+  4% {
+    opacity: 0.1;
+  }
+
+  8% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .glowing-btn {
+    font-size: 1em;
+  }
+}
+
+.btn_container {
+  float: right;
+  width: 24%;
+  margin: 20px 45px 0 0;
+}
+
+mat-tab-group {
+  margin-bottom: 45px;
+}
+
+.add_opacity {
+  opacity: 0.8;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.mat_card {
+  max-width: 300px;
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  padding: 40px;
+  text-align: center;
+}
+
+mat-spinner {
+  margin-left: 20px;
+}
+
+.mat_error_card, .mat_success_card {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  color: red;
+  background-color: #ffd0d0;
+  z-index: 999;
+}
+
+.mat_success_card {
+  color: green;
+  background-color: #92f6a8;
+}
+
+.mat_icon_close {
+  vertical-align: bottom;
+  margin-left: 30px;
+  font-weight: bolder;
+  cursor: pointer;
+}
+

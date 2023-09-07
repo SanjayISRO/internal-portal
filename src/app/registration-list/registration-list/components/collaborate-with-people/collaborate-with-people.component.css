@@ -1,0 +1,80 @@
+.search_div {
+    float: right;
+    padding: 10px 5px;
+    width: 30%;
+}
+
+mat-form-field {
+    width: 100%;
+    background-color: transparent;
+}
+
+:host >>> mat-form-field .mdc-text-field--filled,
+:host >>> mat-form-field .mdc-text-field--filled:hover,
+:host >>> mat-form-field .mdc-text-field--filled:focus {
+    background-color: transparent !important;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table td,
+table th {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: left;
+    word-break: break-word;
+}
+
+tbody {
+    display: block;
+    height: 522px;
+    overflow: auto;
+}
+thead,
+tbody tr {
+    display: table;
+    width: 100%;
+}
+
+th {
+    background: #364f74;
+    color: #fff;
+}
+
+th:hover {
+    color: #ff4f1f;
+}
+
+tr:hover {
+    background-color: #f2f2f2;
+}
+
+button:hover {
+    background-color: #ff4f1f;
+    box-shadow: 0px 5px 0px 3px #374f74;
+}
+
+button {
+    padding: 10px;
+    background-color: #374f74;
+    color: #fff;
+    font-weight: bolder;
+    cursor: pointer;
+    box-shadow: 0px 5px 0px 3px #ff4f1f;
+    border-radius: 50px;
+}
+
+.btn_container {
+    float: left;
+    width: 24%;
+    margin: 20px 45px 0 0;
+}
+
+.delete_icon {
+    color: red;
+    padding-left: 30px !important;
+    cursor: pointer;
+}
