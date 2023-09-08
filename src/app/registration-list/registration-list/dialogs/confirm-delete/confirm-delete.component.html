@@ -6,13 +6,21 @@
         </button> -->
     </mat-card-header>
     <mat-card-content class="modal-body" style="padding: 10px;">
-        <p style="margin: 25px 0 0 0 ;">Are you sure you want to delete the entry?</p>
+        <p style="color: red" *ngIf="secretKeyMisMatch" >Secret Key entered does not match the Secret Key saved.</p>
+        <mat-form-field class="example-full-width" style="width: 100%;">
+            <mat-label>Secret Key</mat-label>
+            <input id="secretKey" name="secretKey" [(ngModel)]="secretKey" matInput autocomplete="off" type="password" >
+        </mat-form-field>
+        <img [ngStyle]="{'top': secretKeyMisMatch ? '56%' : '30%'}" class="fa-eye" src="../../../../../assets/images/monkey.png" alt="" *ngIf="inputType === 'password'" (click)="onClickEye()">
+        <img [ngStyle]="{'top': secretKeyMisMatch ? '56%' : '30%'}" class="fa-eye" src="../../../../../assets/images/ape.png" alt="" *ngIf="inputType === 'text'" (click)="onClickEye()">
+
+        <!-- <i [ngStyle]="{'top': secretKeyMisMatch ? '56%' : '30%'}"class="fa fa-eye" aria-hidden="true" (click)="onClickEye()"></i> -->
     </mat-card-content>
     <mat-card-actions style="padding-top: 20px;">
         <div>
             <button class="button btn_close" mat-dialog-close="cancel">Cancel</button>
 
-            <button class="button" mat-dialog-close="ok">OK</button>
+            <button [ngStyle]="{'opacity': !secretKey ? '0.5' : '1'}" class="ok_button" [disabled]="!secretKey" (click)="onClickOk()">OK</button>
         </div>
     </mat-card-actions>
 </mat-card>

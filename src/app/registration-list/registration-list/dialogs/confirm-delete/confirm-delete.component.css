@@ -27,3 +27,14 @@ button {
     color: #4e6283;
     border: 2px solid #4e6283;
 }
+
+mat-card {
+    width: 400px;
+}
+
+.fa-eye {
+    position: absolute;
+    right: 7%;
+    cursor: pointer;
+    width: 25px;
+}

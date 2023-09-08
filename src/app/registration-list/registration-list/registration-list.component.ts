@@ -94,7 +94,11 @@ export class RegistrationListComponent implements OnInit {
     this.emitedData = obj;
     this.appService.setFlagValue(true);
     this.isRegisterClicked = true;
-    const dialogRef = this.dialog.open(ConfirmDeleteComponent);
+    const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
+      data: {
+        data : this.emitedData
+      }
+    });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'cancel') {
         this.isRegisterClicked = false;

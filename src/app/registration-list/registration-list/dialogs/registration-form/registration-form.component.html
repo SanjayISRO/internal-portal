@@ -91,7 +91,7 @@
                     </div>
                     <div class="col-md-6">
                         <mat-form-field class="example-full-width">
-                            <mat-label>Secret Key <i class="fa fa-info-circle" #tooltip="matTooltip" matTooltip="Use this secret key to edit the details in future" matTooltipPosition="above" style="cursor: pointer;"></i></mat-label>
+                            <mat-label>Secret Key <i class="fa fa-info-circle" #tooltip="matTooltip" matTooltip="Use this secret key to Edit/Delete the details in future" matTooltipPosition="above" style="cursor: pointer;"></i></mat-label>
                             <input name="secretKey" formControlName="secretKey" matInput autocomplete="off">
                             <mat-error *ngIf="userRegistrationForm.controls['secretKey'].hasError('required')">Secret
                                 Key is
@@ -151,6 +151,7 @@
 
                 <ng-container
                     *ngIf="userRegistrationForm.controls['contributionSelection'].value.toLowerCase() === 'collaborate'">
+                    <div class="col-md-6">
                     <mat-form-field appearance="fill" class="example-form-field" style="width: 100%; margin-top: 10px;">
                         <mat-label>Skill(s)</mat-label>
                         <mat-chip-grid #chipGrid aria-label="Enter keywords" formControlName="skillSetForCollaborate">
@@ -170,6 +171,18 @@
                             <strong>required</strong>
                         </mat-error>
                     </mat-form-field>
+                    </div>
+                    <div class="col-md-6" style="margin-top: 10px;">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Secret Key <i class="fa fa-info-circle" #tooltip="matTooltip" matTooltip="Use this secret key to Edit/Delete the details in future" matTooltipPosition="above" style="cursor: pointer;"></i></mat-label>
+                            <input name="secretKey" formControlName="secretKey" matInput autocomplete="off">
+                            <mat-error *ngIf="userRegistrationForm.controls['secretKey'].hasError('required')">Secret
+                                Key is
+                                <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+
+                    </div>
                 </ng-container>
                 <!-- <div style="margin-top: 35px">
                 <button [ngStyle]="{'opacity': !userRegistrationForm.valid ? '0.5' : '1'}"

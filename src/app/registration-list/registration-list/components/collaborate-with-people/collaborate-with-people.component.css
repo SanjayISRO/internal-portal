@@ -77,4 +77,5 @@ button {
     color: red;
     padding-left: 30px !important;
     cursor: pointer;
+    font-size: 22px;
 }

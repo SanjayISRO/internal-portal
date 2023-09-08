@@ -51,7 +51,7 @@ export class FileSaverService {
          'isActive': true,
          'id': null,
          'genPlatform': form.controls['genPlatform'].value,
-         'secretKey': isConnect ? form.controls['secretKey'].value : undefined,
+         'secretKey': form.controls['secretKey'].value,
          'title': isConnect ? form.controls['title'].value : undefined,
          'problemStatement': isConnect ? form.controls['problemStatement'].value : undefined,
          'status': isConnect ? 'Open' : undefined,

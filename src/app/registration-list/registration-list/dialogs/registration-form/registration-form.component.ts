@@ -64,7 +64,7 @@ export class RegistrationFormComponent implements OnInit, OnDestroy {
       this.updateDateValidation(['skillSetForCollaborate']);
     }
     if (this.data.option.toLowerCase() === 'collaborate') {
-      ['problemStatement', 'title', 'secretKey', 'keywordsOrKeyReq'].forEach((e: string) => {
+      ['problemStatement', 'title', 'keywordsOrKeyReq'].forEach((e: string) => {
         this.userRegistrationForm.controls[e].clearValidators();
         this.userRegistrationForm.controls[e].updateValueAndValidity();
       });
