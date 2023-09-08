@@ -7,9 +7,9 @@ import { catchError, Observable, throwError } from 'rxjs';
 })
 export class HttpService {
 
-  baseUrl: string = 'http://localhost:8080' || window.location.origin;
+  // baseUrl: string = 'http://localhost:8080' || window.location.origin;
 
-  // baseUrl: string = window.location.origin;
+  baseUrl: string = window.location.origin;
 
 
   constructor(private http: HttpClient) { }
