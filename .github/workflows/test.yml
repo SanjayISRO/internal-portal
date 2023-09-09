@@ -1,9 +1,14 @@
 name: Test Angular and Deploy
-on: [push, workflow_dispatch]
+on: 
+  push:
+    branch:
+      - internal_portal_changes
 jobs: 
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Output data event
+        run: echo "${{toJSON(hithub.event)}}"
       - name: Get code from repo
         uses: actions/checkout@v3
       - name: Clear chache
@@ -16,29 +21,38 @@ jobs:
           node-version: '18'
       - name: Install dependencies
         run: npm ci
-      # - name: Run Test Cases
-      #   run: npm run test;
-  deploy: 
-    needs: test
-    runs-on: ubuntu-latest
-    steps: 
-      - name: Get code from repo
-        uses: actions/checkout@v3
-      - name: Clear chache
-        run: |
-          npm cache clean --force
-          echo "cache cleared in npm"
-      - name: Install Node js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-      - name: Install dependencies
-        run: |
-          npm ci
-          echo "npm installed successfully"
-      - name: Build Project
-        run: |
-          npm run build
-          echo "Application Built successfully"
       - name : Deploy Built Application
         run : echo "Application Deployed"
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifact
+          path:  |
+            dist
+            package.json
+      # - name: Run Test Cases
+      #   run: npm run test;
+  # deploy: 
+  #   needs: test
+  #   runs-on: ubuntu-latest
+  #   steps: 
+  #     - name: Get code from repo
+  #       uses: actions/checkout@v3
+  #     - name: Clear chache
+  #       run: |
+  #         npm cache clean --force
+  #         echo "cache cleared in npm"
+  #     - name: Install Node js
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '18'
+  #     - name: Install dependencies
+  #       run: |
+  #         npm ci
+  #         echo "npm installed successfully"
+  #     - name: Build Project
+  #       run: |
+  #         npm run build
+  #         echo "Application Built successfully"
+  #     - name : Deploy Built Application
+  #       run : echo "Application Deployed"
