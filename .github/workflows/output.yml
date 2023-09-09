@@ -1,5 +1,5 @@
-name: Simple output 
-on: workflow_dispatch
+name: simple output
+on: [push, workflow_dispatch]
 jobs:
   outputData:
     runs-on: ubuntu-latest
