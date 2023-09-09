@@ -1,4 +1,4 @@
-name: Test Angular Project and Deploy
+name: Test Angular and Deploy
 on: [push, workflow_dispatch]
 jobs: 
   test:
