@@ -15,6 +15,6 @@ jobs:
         with:
           node-version: '18'
       - name: Install dependencies
-        run: nom ci
+        run: npm ci
       - name: Run Test Cases
         run: npm run test;
