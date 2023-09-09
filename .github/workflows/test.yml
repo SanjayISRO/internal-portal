@@ -1,0 +1,20 @@
+name: Test Angular Project
+on: push
+jobs: 
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code from repo
+        uses: actions/checkout@v3
+      - name: Clear chache
+        run: npm cache clean --force
+        run: echo "cache cleared in npm"
+      - name: Install Node js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+        run: echo "Node js installed"
+      - name: Install dependencies
+        run: nom ci
+      - name: Run Test Cases
+        run: npm run test;
