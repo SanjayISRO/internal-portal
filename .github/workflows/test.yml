@@ -44,7 +44,7 @@ jobs:
       #   uses: actions/setup-node@v3
       #   with:
       #     node-version: 18
-       - name: Cache dependencies
+      - name: Cache dependencies
         uses: actions/cache@v3
         with:
           path: ~/.npm
@@ -64,12 +64,12 @@ jobs:
             package.json
       # - name: Run Test Cases
       #   run: npm run test;
-    deploy: 
-      needs: buildAPP
-      runs-on: ubuntu-latest
-      steps:
-        - name: Deploy Project
-          run: echo "Project Deployed"
+  deploy: 
+    needs: buildAPP
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy Project
+        run: echo "Project Deployed"
 
   # deploy: 
   #   needs: test
