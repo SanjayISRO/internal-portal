@@ -7,13 +7,13 @@ jobs:
       - name: Get code from repo
         uses: actions/checkout@v3
       - name: Clear chache
-        run: npm cache clean --force
-        run: echo "cache cleared in npm"
+        run: |
+          npm cache clean --force
+          echo "cache cleared in npm"
       - name: Install Node js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-        run: echo "Node js installed"
       - name: Install dependencies
         run: nom ci
       - name: Run Test Cases
