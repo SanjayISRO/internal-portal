@@ -4,11 +4,14 @@ on:
     branch:
       - internal_portal_changes
 jobs: 
-  test:
+  outputs:
     runs-on: ubuntu-latest
     steps:
       - name: Output data event
-        run: echo "${{toJSON(hithub.event)}}"
+        run: echo "${{toJSON(github.event)}}"
+  getRepo:
+    runs-on: ubuntu-latest
+    steps:
       - name: Get code from repo
         uses: actions/checkout@v3
       - name: Clear chache
@@ -18,9 +21,12 @@ jobs:
       - name: Install Node js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: 18
       - name: Install dependencies
         run: npm ci
+  buildAPP:
+    runs-on: ubuntu-latest
+    steps:
       - name : Deploy Built Application
         run : echo "Application Deployed"
       - name: Upload Artifacts
