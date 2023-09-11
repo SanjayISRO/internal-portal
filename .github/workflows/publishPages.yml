@@ -38,7 +38,8 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v1
         with:
-          artifact_name: Sarif-Report
+          name: Sarif-Report
+          path: sarif-report
     
 
   
