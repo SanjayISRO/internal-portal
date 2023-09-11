@@ -35,13 +35,13 @@ jobs:
       - name: Configure pages
         uses: actions/configure-pages@v1
       - name: upload pages artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v2
         with:
           name: Report
           path: report
       - name: Deploy code
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v2
         with:
           artifact_name: Report
           token: ${{secrets.GIT_TOKEN}}
