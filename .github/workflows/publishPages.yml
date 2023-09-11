@@ -45,7 +45,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v2
         with:
-          artifact_name: Sarif-Report
+          artifact_name: index.html
     
 
   
