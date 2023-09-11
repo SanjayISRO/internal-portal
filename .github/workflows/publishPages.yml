@@ -23,7 +23,7 @@ jobs:
       - name: upload artifacts
         uses: actions/upload-pages-artifact@v2
         with:
-          path: ./_site
+          path: ./summary.html
           name: github-pages
   deploy:
     runs-on: ubuntu-latest
