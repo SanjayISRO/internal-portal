@@ -26,9 +26,9 @@ jobs:
            name: Sarif-Report
            path: ./sarif-report
       - name: check directory
-        run: | 
-          ls 
-          pwd
+        run: ls
+      - name: check workspace
+        run: pwd
 
   
     
