@@ -26,8 +26,6 @@ jobs:
         with:
            name: Sarif-Report
            path: .
-      - name: Configure pages
-        uses: actions/configure-pages@v2
       - name: upload pages artifact
         uses: actions/upload-pages-artifact@v1
         with:
