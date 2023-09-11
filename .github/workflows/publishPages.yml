@@ -11,7 +11,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Sarif-Report
-          path: summary.html
+          path: dist
           retention-days: 5
       # - name: Download summary html
       #   uses: actions/download-artifact@v2
