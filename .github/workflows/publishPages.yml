@@ -43,9 +43,9 @@ jobs:
         run: ls
       - name: Deploy code
         id: deployment
-        uses: actions/deploy-pages@v1
-        with:
-          artifact_name: Sarif-Report
+        uses: actions/deploy-pages@v2
+        # with:
+        #   artifact_name: Sarif-Report
     
 
   
