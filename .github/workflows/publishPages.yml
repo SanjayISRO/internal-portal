@@ -14,16 +14,16 @@ jobs:
         with:
           source: .
           destination: ./_site
-      - name: Upload summary html
+      - name: Upload index html
         uses: actions/upload-artifact@v3
         with:
           name: Sarif-Report
-          path: summary.html
+          path: index.html
           retention-days: 5
       - name: upload artifacts
         uses: actions/upload-pages-artifact@v2
         with:
-          path: ./summary.html
+          path: ./_site
           name: github-pages
   deploy:
     runs-on: ubuntu-latest
