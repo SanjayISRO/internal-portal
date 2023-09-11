@@ -19,7 +19,18 @@ jobs:
         uses: actions/download-artifact@v2
         with:
            name: Sarif-Report
+  deploy:
+    needs: uploadArtifact
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write 
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy in pages
+        id: deployment
         uses: actions/deploy-pages@v2
-        with:
-          artifact_name: summary.html
+        # with:
+        #   artifact_name: summary.html
