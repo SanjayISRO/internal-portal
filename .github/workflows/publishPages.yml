@@ -36,7 +36,7 @@ jobs:
       - name: upload pages artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          name: sarif-report
+          name: Sarif-Report
           path: .
       - name: Deploy code
         id: deployment
