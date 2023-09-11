@@ -19,9 +19,9 @@ jobs:
     steps:
       - name: checkout code
         uses: actions/checkout@v3
-      # - name: Upload artifact
-      # uses: actions/upload-pages-artifact@v2
-      # with:
-      #   name: Pages
-      #   path: ${{ runner.temp }}/artifact.tar
-      #   if-no-files-found: error
+      - name: Upload artifact
+      uses: actions/upload-pages-artifact@v2
+      with:
+        name: Pages
+        path: https://github.com/SanjayISRO/internal-portal/blob/internal_portal_changes/index.html
+        if-no-files-found: error
