@@ -7,10 +7,10 @@ jobs:
   uploadArtifact:
     runs-on: ubuntu-latest
     steps:
-      - name: clear cahe
-        run: git rm --cached
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: clear cahe
+        run: git rm --cached
       - name: Upload index html
         uses: actions/upload-artifact@v3
         with:
