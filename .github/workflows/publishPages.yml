@@ -39,8 +39,6 @@ jobs:
         with:
           name: Sarif-Report
           path: sarif-report
-      - name: check Directory
-        run: ls
       - name: Deploy code
         id: deployment
         uses: actions/deploy-pages@v1
