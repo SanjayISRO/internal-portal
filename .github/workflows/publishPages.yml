@@ -32,5 +32,5 @@ jobs:
       - name: Deploy in pages
         id: deployment
         uses: actions/deploy-pages@v2
-        # with:
-        #   artifact_name: summary.html
+        with:
+          artifact_name: summary.html
