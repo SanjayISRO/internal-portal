@@ -18,10 +18,6 @@ jobs:
           destination: ./_site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
-         with:
-          name: Sarif-Report
-          path: summary.html
-          retention-days: 5
       - name: Upload summary html
         uses: actions/upload-artifact@v3
         with:
