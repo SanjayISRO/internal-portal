@@ -43,9 +43,10 @@ jobs:
         run: ls
       - name: Deploy code
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v1
         with:
-          artifact_name: index.html
+          artifact_name: Sarif-Report
+          token: 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
     
 
   
