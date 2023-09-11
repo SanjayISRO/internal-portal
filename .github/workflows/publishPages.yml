@@ -15,10 +15,10 @@ jobs:
           name: Sarif-Report
           path: summary.html
           retention-days: 5
-      # - name: Download summary html
-      #   uses: actions/download-artifact@v2
-      #   with:
-      #      name: Sarif-Report
+      - name: Download summary html
+        uses: actions/download-artifact@v2
+        with:
+           name: Sarif-Report
       # - name: Deploy in pages
       #   uses: actions/deploy-pages@v2
       #   with:
