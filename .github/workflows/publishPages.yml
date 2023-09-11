@@ -14,7 +14,7 @@ jobs:
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
-          source: ./
+          source: ./summary.html
           destination: ./_site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
@@ -41,5 +41,3 @@ jobs:
       - name: Deploy in pages
         id: deployment
         uses: actions/deploy-pages@v2
-        with:
-          artifact_name: summary.html
