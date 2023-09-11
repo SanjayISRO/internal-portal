@@ -30,13 +30,12 @@ jobs:
         uses: actions/download-artifact@v2
         with:
            name: Sarif-Report
-           path: .
       - name: Configure pages
         uses: actions/configure-pages@v1
       - name: upload pages artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: .
+          path: summary.html
       - name: Deploy code
         id: deployment
         uses: actions/deploy-pages@v1
