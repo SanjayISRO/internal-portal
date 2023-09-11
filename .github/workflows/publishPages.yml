@@ -35,10 +35,10 @@ jobs:
       - name: Configure pages
         uses: actions/configure-pages@v1
       - name: upload pages artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v1
         with:
           name: Sarif-Report
-          path: sarif-report/
+          path: sarif-report
       - name: check Directory
         run: ls
       - name: Deploy code
