@@ -35,7 +35,7 @@ jobs:
       - name: Configure pages
         uses: actions/configure-pages@v1
       - name: upload pages artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v1
         with:
           name: Sarif-Report
           path: sarif-report
@@ -46,7 +46,7 @@ jobs:
         uses: actions/deploy-pages@v1
         with:
           artifact_name: Sarif-Report
-          token: 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
+          token: ${{secrets.GIT_TOKEN}}
     
 
   
