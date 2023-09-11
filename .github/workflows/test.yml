@@ -1,97 +1,21 @@
-name: Test Angular and Deploy
-on: 
-  push:
-    branch:
-      - internal_portal_changes
-jobs: 
-  outputs:
+name: Publish GitHub Pages
+on: workflow_dispatch
+jobs:
+  publishPages:
     runs-on: ubuntu-latest
     steps:
-      - name: Output data event
-        run: echo "${{toJSON(github.event)}}"
-  getRepo:
-    needs: outputs
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get code from repo
+      - name: checkout code
         uses: actions/checkout@v3
-      - name: Clear chache
-        run: |
-          npm cache clean --force
-          echo "cache cleared in npm"
-      - name: Cache dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: deps-node-modules-${{ hashFiles('**/package.lock.json') }}
-      # - name: Install Node js
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: 18
       - name: Install dependencies
         run: npm ci
-  buildAPP:
-    needs: getRepo
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get code from repo
-        uses: actions/checkout@v3
-      # - name: Clear chache
-      #   run: |
-      #     npm cache clean --force
-      #     echo "cache cleared in npm"
-      # - name: Install Node js
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: 18
-      - name: Cache dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: deps-node-modules-${{ hashFiles('**/package.lock.json') }}
-      - name: Install dependencies
-        run: npm ci
-      - name: Run Build
+      - name: Build App
         run: npm run build
-      - name : Deploy Built Application
-        run : echo "Application Deployed"
-      - name: Upload Artifacts
+      - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: dist-files
-          path:  |
+          name: pages
+          path: |
             dist
             package.json
-      # - name: Run Test Cases
-      #   run: npm run test;
-  deploy: 
-    needs: buildAPP
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy Project
-        run: echo "Project Deployed"
-
-  # deploy: 
-  #   needs: test
-  #   runs-on: ubuntu-latest
-  #   steps: 
-  #     - name: Get code from repo
-  #       uses: actions/checkout@v3
-  #     - name: Clear chache
-  #       run: |
-  #         npm cache clean --force
-  #         echo "cache cleared in npm"
-  #     - name: Install Node js
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: '18'
-  #     - name: Install dependencies
-  #       run: |
-  #         npm ci
-  #         echo "npm installed successfully"
-  #     - name: Build Project
-  #       run: |
-  #         npm run build
-  #         echo "Application Built successfully"
-  #     - name : Deploy Built Application
-  #       run : echo "Application Deployed"
+          if-no-files-found: error
+      
