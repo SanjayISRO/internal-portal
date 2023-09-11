@@ -1,5 +1,5 @@
 name: Pages and Deployment
-on: push
+on: workflow_dispatch
 jobs:
   getGitData:
     runs-on: ubuntu-latest
