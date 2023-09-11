@@ -41,11 +41,11 @@ jobs:
           path: sarif-report
       - name: check Directory
         run: ls
-      - name: Deploy code
-        id: deployment
-        uses: actions/deploy-pages@v1
-        with:
-          artifact_name: Sarif-Report
+      # - name: Deploy code
+      #   id: deployment
+      #   uses: actions/deploy-pages@v1
+      #   with:
+      #     artifact_name: Sarif-Report
     
 
   
