@@ -33,7 +33,7 @@ jobs:
       pages: write
       id-token: write
     environment:
-      name: github-pages
+      name: github-pages-1
       url: ${{steps.deployment.outputs.page_url}}
     steps:
       # - name: Download summary html
