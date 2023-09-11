@@ -1,6 +1,11 @@
 name: Pages and Deployment
 on: push
 jobs:
+  getGitData:
+    runs-on: ubuntu-latest
+    steps:
+      - name: git data
+        run: echo "${{toJSON(github)}}"
   checkoutCode:
     runs-on: ubuntu-latest
     steps:
@@ -14,3 +19,9 @@ jobs:
     steps:
       - name: checkout code
         uses: actions/checkout@v3
+      - name: Upload artifact
+      uses: actions/upload-pages-artifact@v2
+      with:
+        name: Pages
+        path: ${{ runner.temp }}/artifact.tar
+        if-no-files-found: error
