@@ -19,7 +19,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
            name: Sarif-Report
-      # - name: Deploy in pages
-      #   uses: actions/deploy-pages@v2
-      #   with:
-      #     artifact_name: summary.html
+      - name: Deploy in pages
+        uses: actions/deploy-pages@v2
+        with:
+          artifact_name: summary.html
