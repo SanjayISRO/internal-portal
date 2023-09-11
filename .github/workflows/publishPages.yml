@@ -6,6 +6,12 @@ on:
 jobs:
   uploadArtifact:
     runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    environment:
+      name: github-pages
+      url: ${{steps.deployment.outputs.page_url}}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -15,16 +21,6 @@ jobs:
           name: Sarif-Report
           path: summary.html
           retention-days: 5
-  deploy:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: 'read'
-      id-token: 'write'
-    needs: uploadArtifact
-    environment:
-      name: github-pages
-      url: ${{steps.deployment.outputs.page_url}}
-    steps:
       - name: Download summary html
         uses: actions/download-artifact@v2
         with:
@@ -40,3 +36,28 @@ jobs:
       - name: Deploy code
         id: deployment
         uses: actions/deploy-pages@v1
+  # deploy:
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     contents: 'read'
+  #     id-token: 'write'
+    # needs: uploadArtifact
+    # environment:
+    #   name: github-pages
+    #   url: ${{steps.deployment.outputs.page_url}}
+    # steps:
+      # - name: Download summary html
+      #   uses: actions/download-artifact@v2
+      #   with:
+      #      name: Sarif-Report
+      #      path: .
+      # - name: Configure pages
+      #   uses: actions/configure-pages@v2
+      # - name: upload pages artifact
+      #   uses: actions/upload-pages-artifact@v1
+      #   with:
+      #     name: git page
+      #     path: .
+      # - name: Deploy code
+      #   id: deployment
+      #   uses: actions/deploy-pages@v1
