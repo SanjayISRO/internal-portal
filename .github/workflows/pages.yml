@@ -1,0 +1,23 @@
+name: Pages and Deploy
+on: push
+jobs:
+  publish_github_page:
+    runs-on: ubuntu-latest
+    # steps:
+    #   - name: Checkout Code
+    #   uses: actions/checkout@v3
+    #   - name: Install Dependencies
+    #   run : npm ci
+    #   - name: Run Build
+    #   run : npm run build
+    #   - name: Application Build Status
+    #   run : echo "Build successfully"
+    #   name: Upload artifact
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: pages
+    #     path: |
+    #       dist
+    #       package.json
+    #     if-no-files-found: error
+      
