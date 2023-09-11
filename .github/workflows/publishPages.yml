@@ -12,7 +12,7 @@ jobs:
       - name: Upload index html
         uses: actions/upload-artifact@v3
         with:
-          name: Sarif-Report
+          name: Sarif-Report1
           path: index.html
           retention-days: 5
      
@@ -30,20 +30,20 @@ jobs:
       - name: Download index html
         uses: actions/download-artifact@v2
         with:
-           name: Sarif-Report
+           name: Sarif-Report1
            path: ./sarif-report1
       - name: Configure pages
         uses: actions/configure-pages@v1
       - name: upload pages artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          name: Sarif-Report
+          name: Sarif-Report1
           path: sarif-report1
       - name: Deploy code
         id: deployment
         uses: actions/deploy-pages@v1
         with:
-          artifact_name: Sarif-Report
+          artifact_name: Sarif-Report1
           token: ${{secrets.GIT_TOKEN}}
     
 
