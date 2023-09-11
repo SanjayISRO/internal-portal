@@ -1,0 +1,8 @@
+name: Pages and Deployment
+on: push
+jobs:
+  checkoutCode:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        run: actions/checkout@v3
