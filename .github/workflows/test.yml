@@ -1,8 +1,8 @@
 name: Test Angular and Deploy
-on: 
-  push:
-    branch:
-      - internal_portal_changes
+on: workflow_dispatch
+  # push:
+  #   branch:
+  #     - internal_portal_changes
 jobs: 
   outputs:
     runs-on: ubuntu-latest
