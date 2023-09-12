@@ -32,6 +32,12 @@ jobs:
         with:
            name: Report
            path: ./report
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        # if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.github_token }}
+          publish_dir: ./report
       # - name: Configure pages
       #   uses: actions/configure-pages@v1
       # - name: upload pages artifact
@@ -39,11 +45,11 @@ jobs:
       #   with:
       #     name: Report
       #     path: ./report
-      - name: Deploy code
-        id: deployment
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: ./report
+      # - name: Deploy code
+      #   id: deployment
+      #   uses: JamesIves/github-pages-deploy-action@v4
+      #   with:
+      #     folder: ./report
       # - name: Deploy code
       #   id: deployment
       #   uses: actions/deploy-pages@v1
