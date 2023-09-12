@@ -44,8 +44,8 @@ jobs:
         uses: crazy-max/ghaction-github-pages@v4
         with:
           artifact_name: Report
-          publish_dir: ./sarif-report
-          build_dir: ./sarif-report
+          publish_dir: ./report
+          build_dir: ./report
           domain: github.com
           target_branch: gh-pages
         env:
