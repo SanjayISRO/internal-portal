@@ -39,7 +39,7 @@ jobs:
         with:
           name: Report
           path: ./report
-       - name: Deploy code
+      - name: Deploy code
         id: deployment
         uses: actions/deploy-pages@v1
         with:
