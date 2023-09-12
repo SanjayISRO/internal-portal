@@ -39,18 +39,24 @@ jobs:
         with:
           name: Report
           path: ./report
-      - name: Deploy code
+       - name: Deploy code
         id: deployment
-        uses: crazy-max/ghaction-github-pages@v4
+        uses: actions/deploy-pages@v1
         with:
           artifact_name: Report
-          publish_dir: ./report
-          build_dir: ./report
-          domain: github.com
-          target_branch: gh-pages
-        env:
-          GITHUB_PAGES: true
-          GITHUB_TOKEN: ${{secrets.GIT_TOKEN}}
+          token: ${{secrets.github_token}}
+      # - name: Deploy code
+      #   id: deployment
+      #   uses: crazy-max/ghaction-github-pages@v4
+      #   with:
+      #     artifact_name: Report
+      #     publish_dir: ./report
+      #     build_dir: ./report
+      #     domain: github.com
+      #     target_branch: gh-pages
+      #   env:
+      #     GITHUB_PAGES: true
+      #     GITHUB_TOKEN: ${{secrets.GIT_TOKEN}}
     
 
   
