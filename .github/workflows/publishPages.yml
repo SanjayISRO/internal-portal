@@ -41,10 +41,15 @@ jobs:
           path: ./report
       - name: Deploy code
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          artifact_name: Report
-          token: ${{secrets.github_token}}
+          folder: ./report
+      # - name: Deploy code
+      #   id: deployment
+      #   uses: actions/deploy-pages@v1
+      #   with:
+      #     artifact_name: Report
+      #     token: ${{secrets.github_token}}
       # - name: Deploy code
       #   id: deployment
       #   uses: crazy-max/ghaction-github-pages@v4
