@@ -41,10 +41,16 @@ jobs:
           path: ./report
       - name: Deploy code
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: crazy-max/ghaction-github-pages@v4
         with:
           artifact_name: Report
-          token: ${{secrets.GIT_TOKEN}}
+          publish_dir: ./sarif-report
+          build_dir: ./sarif-report
+          domain: github.com
+          target_branch: gh-pages
+        env:
+          GITHUB_PAGES: true
+          GITHUB_TOKEN: ${{secrets.GIT_TOKEN}}
     
 
   
