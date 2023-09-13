@@ -28,7 +28,7 @@ jobs:
         uses: actions/deploy-pages@v2
         with:
           artifact_name: report
-          token: ${{github_token}}
+          token: ${{secrets.GIT_TOKEN}}
 
   
     
