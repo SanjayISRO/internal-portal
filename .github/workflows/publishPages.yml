@@ -34,12 +34,20 @@ jobs:
         with: 
           name: github-pages
           path: index.html
+      - name: Download data
+        uses: actions/download-artifact@v2
+        with:
+           name: github-pages
+           path: ./github-pages
+      - name: test
+        run: ls
       - name: Deploy code
         id: deployment
         uses: actions/deploy-pages@v2
         with:
           artifact_name: github-pages
           token: ${{secrets.github_token}}
+          path: ./
       # - name: Download index html
       #   uses: actions/download-artifact@v2
       #   with:
