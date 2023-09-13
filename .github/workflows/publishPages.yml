@@ -36,7 +36,7 @@ jobs:
           path: index.html
       - name: Deploy code
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v2
         with:
           artifact_name: github-pages
           token: ${{secrets.github_token}}
