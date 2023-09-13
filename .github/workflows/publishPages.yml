@@ -13,7 +13,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Report
-          path: test.html
+          path: index.html
           retention-days: 5
      
   deploy:
