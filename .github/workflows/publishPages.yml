@@ -29,6 +29,3 @@ jobs:
         with:
           artifact_name: report
           token: ${{secrets.GIT_TOKEN}}
-
-  
-    
