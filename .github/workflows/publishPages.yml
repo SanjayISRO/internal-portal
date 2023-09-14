@@ -4,8 +4,14 @@ on:
     branch:
       - internal_portal_changes
 jobs:
+  checkoutcode:
+  runs-on: ubuntu-latest
+  steps:
+    - name: checkout code
+      uses: actions/checkout@v3
   deploy:
     runs-on: ubuntu-latest
+    needs: checkoutcode
     permissions:
       contents: read
       pages: write
@@ -14,14 +20,14 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      # - name: Checkout
+      #   uses: actions/checkout@v3
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: ./report
+          path: ./sarif-report
           name: report
       - name: Deploy to GitHub Pages
         id: deployment
