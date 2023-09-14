@@ -33,7 +33,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v2
         with:
-          # artifact_name: report
+          artifact_name: report
           path: /home/runner/work/_temp/artifact.tar
           token: ${{secrets.GIT_TOKEN}}
       # - name: Deploy to GitHub Pages
