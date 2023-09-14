@@ -13,7 +13,6 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-      # url: ${{ steps.prisma.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -22,7 +21,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: ./sarif-report
+          path: reports
           name: report
       - name: Deploy to GitHub Pages
         id: deployment
