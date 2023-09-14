@@ -13,7 +13,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-      url: ${{ steps.prisma.outputs.page_url }}
+      # url: ${{ steps.prisma.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -24,23 +24,23 @@ jobs:
         with:
           path: ./sarif-report
           name: report
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
-        with:
-          artifact_name: report
-          token: ${{secrets.GIT_TOKEN}}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
           path: ./prisma-report
           name: prisma-report
       - name: Deploy to GitHub Pages
-        id: prisma
+        id: deployment
         uses: actions/deploy-pages@v2
         with:
-          artifact_name: prisma-report
+          artifact_name: report
           token: ${{secrets.GIT_TOKEN}}
+      # - name: Deploy to GitHub Pages
+      #   id: prisma
+      #   uses: actions/deploy-pages@v2
+      #   with:
+      #     artifact_name: prisma-report
+      #     token: ${{secrets.GIT_TOKEN}}
   # deploy-prisma-scans-report:
   #   runs-on: ubuntu-latest
   #   permissions:
