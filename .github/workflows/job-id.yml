@@ -49,10 +49,16 @@ jobs:
       - name: checkout code
         uses: actions/checkout@v3
 
-      - name: upload artifact-1
+      - name: upload prisma.html
         uses: actions/upload-artifact@v1
         with:
           name: prisma.html
+          path: ./reports/prisma.html
+
+      - name: upload index.html
+        uses: actions/upload-artifact@v1
+        with:
+          name: index.html
           path: ./reports/prisma.html
     
   donwload-and-deploy:
@@ -60,8 +66,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+      - name: download html in folder
+        uses: actions/download-artifact@v2
+        with:
+          name: index.html
+          path: ./report2
+
       - name: download html in folder
         uses: actions/download-artifact@v2
         with:
           name: prisma.html
           path: ./report2/prisma_report_${{ needs.get-job-id.outputs.JOB_ID}}
+      
+      - name: set url for reports
+        run: echo "<a href=/prisma_report_${{ needs.get-job-id.outputs.JOB_ID}}/prisma.html> Prisma Report - ${{ needs.get-job-id.outputs.JOB_ID}}</a>" >> ./report2/index.html
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: reports
+          name: report
+          
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+        with:
+          artifact_name: report
+          token: ${{secrets.GIT_TOKEN}}
