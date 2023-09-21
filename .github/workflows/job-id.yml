@@ -7,7 +7,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    env:
+    outputs:
       JOB_ID: ${{ steps.extract-last-value.outputs.job_id }}
 
     steps:
@@ -33,5 +33,4 @@ jobs:
           last_value=$(basename "$URL")
           echo "LAST_VALUE: $last_value"
           echo "::set-output name=job_id::$last_value"
-      - name: print job id
-        run: echo "${{ env.JOB_ID }}"
+      
