@@ -9,17 +9,28 @@ jobs:
     name: Build and Test
     runs-on: ubuntu-latest
     steps:
-      - name: Get job ID
-        run: echo "Job ID, ${{GITHUB_JOB}}"
-      # - name: Checkout action
-      #   uses: actions/checkout@v3
-      # - name: Some Scripts
-      #   run: echo "do something here"
-      # - name: Get Current Job Log URL
-      #   uses: Tiryoh/gha-jobid-action@v0
-      #   id: jobs1
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     job_name: "Build and Test" # input job.<job-id>.name here. job.<job-id> won't works.
-      # - name: Output Current Job Log URL
-      #   run: echo ${{ steps.jobs1.outputs.html_url }}
+     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Get Job ID
+        id: get-job-id
+        run: |
+          TOKEN="$GIT_TOKEN"  # Replace with the name of your secret
+          WORKFLOW_NAME="CI"  # Replace with the name of your workflow
+          API_URL="https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/$WORKFLOW_NAME/runs?event=workflow_run"
+          JOB_ID=$(curl -s -X GET -H "Authorization: token $TOKEN" $API_URL | jq -r '.workflow_runs[0].jobs[0].id')
+          echo "::set-output name=job_id::$JOB_ID"
+
+      - name: Display Job ID
+        run: echo "Job ID: ${{ steps.get-job-id.outputs.job_id }}"
+
+
+
+
+
