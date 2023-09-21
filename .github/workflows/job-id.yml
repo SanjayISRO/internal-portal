@@ -43,5 +43,5 @@ jobs:
     steps: 
       - name: Get Job Id
         run: |
-          echo "The job id is: ${{ needs.build.JOB_ID}}"
+          echo "The job id is: ${{ needs.build.outputs.JOB_ID}}"
       
