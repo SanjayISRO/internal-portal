@@ -46,7 +46,7 @@ jobs:
           path: /home/runner/work/internal-portal/internal-portal/prisma.html
 
   donwload-and-deploy:
-    needs: [checkout-code, get-job-id]
+    needs: [upload-prisma-from-code, get-job-id]
     runs-on: ubuntu-latest
 
     permissions:
