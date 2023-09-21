@@ -1,8 +1,5 @@
-name: Get Last Value from URL
-
-on: workflow_dispatch
-  
-
+name: Github pages history
+on: push
 jobs:
   get-job-id:
     runs-on: ubuntu-latest
@@ -38,29 +35,16 @@ jobs:
           VALUE="${{ steps.extract-last-value.outputs.JOB_ID }}"
           echo "The value is: $VALUE"
 
-  checkout-code:
-    needs: get-job-id
+  upload-prisma-from-code:
     runs-on: ubuntu-latest
-
-    steps: 
-      - name: Get Job Id
-        run: |
-          echo "The job id is: ${{ needs.get-job-id.outputs.JOB_ID}}"
-      - name: checkout code
-        uses: actions/checkout@v3
-
-      - name: upload prisma.html
+    needs: get-job-id
+    steps:
+      - name: upload prisma report
         uses: actions/upload-artifact@v1
         with:
           name: prisma.html
-          path: ./reports/prisma.html
+          path: /home/runner/work/internal-portal/internal-portal/prisma.html
 
-      - name: upload index.html
-        uses: actions/upload-artifact@v1
-        with:
-          name: index.html
-          path: ./reports/prisma.html
-    
   donwload-and-deploy:
     needs: [checkout-code, get-job-id]
     runs-on: ubuntu-latest
@@ -76,22 +60,15 @@ jobs:
 
     steps:
 
-      - name: download index html in folder
-        uses: actions/download-artifact@v2
-        with:
-          name: index.html
-          path: ./report2
-
       - name: download prisma html in folder
         uses: actions/download-artifact@v2
         with:
           name: prisma.html
-          path: ./report2/prisma_report_${{ needs.get-job-id.outputs.JOB_ID}}
+          path: /home/runner/work/internal-portal/internal-portal/report2/prisma_report_${{ needs.get-job-id.outputs.JOB_ID}}
       
       - name: set url for reports
         run: |
-          echo "<h2>Generated Reports</h2>" >> ./report2/index.html
-          echo "<br/><a href=/internal-portal/prisma_report_${{ needs.get-job-id.outputs.JOB_ID}}/prisma.html> Prisma Report - ${{ needs.get-job-id.outputs.JOB_ID}}</a><br/>" >> ./report2/index.html
+          echo "<br/><a href=/internal-portal/prisma_report_${{ needs.get-job-id.outputs.JOB_ID}}/prisma.html> Prisma Report - ${{ needs.get-job-id.outputs.JOB_ID}}</a><br/>" >> /home/runner/work/internal-portal/internal-portal/report2/index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
