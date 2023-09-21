@@ -13,9 +13,9 @@ jobs:
       - name: Extract Last Value
         id: extract-last-value
         run: |
-        URL="${{ steps.set-url.outputs.url }}"
-        last_value=$(basename "$URL")
-        echo "Last Value: $last_value"
+          URL="${{ steps.set-url.outputs.url }}"
+          last_value=$(basename "$URL")
+          echo "Last Value -->  $last_value"
 
 
 
