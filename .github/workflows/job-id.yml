@@ -15,8 +15,10 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           job_name: "build"
+
       - name: Output Current Job Log URL
         run: echo ${{ steps.jobs.outputs.html_url }}
+
       - name: Set URL
         id: set-url
         run: echo "URL=${{ steps.jobs.outputs.html_url }}" >> $GITHUB_ENV
@@ -26,4 +28,4 @@ jobs:
         run: |
           URL="${{ env.URL }}"
           last_value=$(basename "$URL")
-          echo "LAST_VALUE=${{ last_value }}" >> $GITHUB_ENV
+          echo "LAST_VALUE=$last_value" >> $GITHUB_ENV
