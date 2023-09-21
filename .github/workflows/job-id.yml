@@ -9,15 +9,17 @@ jobs:
     name: Build and Test
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout action
-        uses: actions/checkout@v3
-      - name: Some Scripts
-        run: echo "do something here"
-      - name: Get Current Job Log URL
-        uses: Tiryoh/gha-jobid-action@v0
-        id: jobs1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          job_name: "Build and Test" # input job.<job-id>.name here. job.<job-id> won't works.
-      - name: Output Current Job Log URL
-        run: echo ${{ steps.jobs1.outputs.html_url }}
+      - name: Get job ID
+        run: echo "Job ID: $GITHUB_JOB"
+      # - name: Checkout action
+      #   uses: actions/checkout@v3
+      # - name: Some Scripts
+      #   run: echo "do something here"
+      # - name: Get Current Job Log URL
+      #   uses: Tiryoh/gha-jobid-action@v0
+      #   id: jobs1
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     job_name: "Build and Test" # input job.<job-id>.name here. job.<job-id> won't works.
+      # - name: Output Current Job Log URL
+      #   run: echo ${{ steps.jobs1.outputs.html_url }}
