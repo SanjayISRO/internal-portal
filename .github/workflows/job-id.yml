@@ -33,4 +33,11 @@ jobs:
           last_value=$(basename "$URL")
           echo "LAST_VALUE: $last_value"
           echo "::set-output name=job_id::$last_value"
+  getJobId:
+    needs: build
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Get Job Id
+        run: |
+          echo "The job id is: ${{ needs.build .JOB_ID}}"
       
