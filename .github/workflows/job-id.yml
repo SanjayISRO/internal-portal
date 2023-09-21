@@ -28,6 +28,5 @@ jobs:
         run: |
           URL="${{ env.URL }}"
           last_value=$(basename "$URL")
-          echo "LAST_VALUE: $last_value"
-          echo "VALUE="$last_value" >> $GITHUB_ENV
-          echo "$GITHUB_ENV"
+          echo "Last_Value=$last_value" >> $GITHUB_OUTPUT
+          echo "${{steps.extract-last-value.outputs.Last_Value}}"
