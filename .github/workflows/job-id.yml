@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      JOB_ID: ${{ steps.extract-last-value.outputs.job_id }}
+      JOB_ID: ${{ steps.extract-last-value.outputs.JOB_ID }}
 
     steps:
 
@@ -31,8 +31,8 @@ jobs:
         run: |
           URL="${{ env.URL }}"
           last_value=$(basename "$URL")
-          echo "LAST_VALUE: $last_value"
-          echo "::set-output name=job_id::$last_value"
+          echo "$last_value"
+          echo "::set-output name=JOB_ID::$last_value"
   getJobId:
     needs: build
     runs-on: ubuntu-latest
