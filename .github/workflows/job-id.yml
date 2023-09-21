@@ -1,10 +1,16 @@
-name: CI
+name: Get Last Value from URL
+
 on: push
+  
+
 jobs:
-  build:
+  extract-last-value:
     runs-on: ubuntu-latest
+
     steps:
-     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Set URL
         id: set-url
         run: echo "::set-output name=url::https://example.com/path/to/resource/value"
@@ -14,8 +20,4 @@ jobs:
         run: |
           URL="${{ steps.set-url.outputs.url }}"
           last_value=$(basename "$URL")
-          echo "Last Value -->  $last_value"
-
-
-
-
+          echo "Last Value: $last_value"
