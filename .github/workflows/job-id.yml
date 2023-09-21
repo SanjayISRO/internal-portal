@@ -28,5 +28,6 @@ jobs:
         run: |
           URL="${{ env.URL }}"
           last_value=$(basename "$URL")
-          echo "Last_Value=$last_value" >> $GITHUB_ENV
+          echo "$last_value" >> $GITHUB_ENV
+          echo "Last_Value=${{ last_value }}" >> $GITHUB_ENV
           echo "value :: ${{ env.Last_Value }}"
