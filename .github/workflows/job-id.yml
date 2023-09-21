@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get job ID
-        run: echo "Job ID, $GITHUB_JOB"
+        run: echo "Job ID, ${{GITHUB_JOB}}"
       # - name: Checkout action
       #   uses: actions/checkout@v3
       # - name: Some Scripts
