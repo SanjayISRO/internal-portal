@@ -1,9 +1,5 @@
 name: CI
-on:
-  push:
-permissions:
-  actions: read
-  contents: read # required by actions/checkout
+on: push
 jobs:
   build:
     name: Build and Test
