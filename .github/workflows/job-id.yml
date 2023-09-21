@@ -16,7 +16,7 @@ jobs:
         id: jobs
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          job_name: "build"
+          job_name: "get-job-id"
 
       - name: Output Current Job Log URL
         run: echo ${{ steps.jobs.outputs.html_url }}
@@ -53,5 +53,5 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: prisma.html
-          path: /reports/prisma.html
+          path: ./reports/prisma.html
       
