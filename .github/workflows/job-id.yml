@@ -30,6 +30,6 @@ jobs:
         id: extract-last-value
         run: |
           URL="${{ env.URL }}"
-          last_value=$(basename "$URL")
-          echo "$Last_Value=$last_value"
+          last_value = $(basename "$URL")
+          echo "$Last_Value = $last_value"
           echo "value :: ${{ env.Last_Value }}"
