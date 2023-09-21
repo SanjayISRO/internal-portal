@@ -31,5 +31,5 @@ jobs:
         run: |
           URL="${{ env.URL }}"
           last_value = $(basename "$URL")
-          echo "$Last_Value = $last_value"
+          $Last_Value = $last_value
           echo "value :: ${{ env.Last_Value }}"
