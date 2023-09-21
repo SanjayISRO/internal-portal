@@ -19,11 +19,11 @@ jobs:
         run: echo ${{ steps.jobs.outputs.html_url }}
       - name: Set URL
         id: set-url
-        run: echo "::set-output name=url::${{ steps.jobs.outputs.html_url }}"
+        run: echo "URL=${{ steps.jobs.outputs.html_url }}" >> $GITHUB_ENV
 
       - name: Extract Last Value
         id: extract-last-value
         run: |
-          URL="${{ steps.set-url.outputs.url }}"
+          URL="${{ env.URL }}"
           last_value=$(basename "$URL")
           echo "Last Value: $last_value"
