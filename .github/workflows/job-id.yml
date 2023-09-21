@@ -33,6 +33,10 @@ jobs:
           last_value=$(basename "$URL")
           echo "$last_value"
           echo "::set-output name=JOB_ID::$last_value"
+      - name: Use Output Value
+        run: |
+          VALUE="${{ steps.extract-last-value.outputs.JOB_ID }}"
+          echo "The value is: $VALUE"
   getJobId:
     needs: build
     runs-on: ubuntu-latest
