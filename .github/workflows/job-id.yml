@@ -54,4 +54,14 @@ jobs:
         with:
           name: prisma.html
           path: ./reports/prisma.html
-      
+    
+  donwload-and-deploy:
+    needs: [get-job-id, checkout-code]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: download html in folder
+        uses: actions/download-artifact@v2
+        with:
+          name: prisma.html
+          path: ./report2/prisma_report_${{ needs.get-job-id.outputs.JOB_ID}}
