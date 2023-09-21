@@ -67,13 +67,13 @@ jobs:
 
     steps:
 
-      - name: download html in folder
+      - name: download index html in folder
         uses: actions/download-artifact@v2
         with:
           name: index.html
           path: ./report2
 
-      - name: download html in folder
+      - name: download prisma html in folder
         uses: actions/download-artifact@v2
         with:
           name: prisma.html
@@ -88,12 +88,12 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: reports
-          name: report
-          
+          path: ./reports
+          name: final-report
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
         with:
-          artifact_name: report
+          artifact_name: final-report
           token: ${{secrets.GIT_TOKEN}}
