@@ -88,7 +88,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: ./reports
+          path: /home/runner/work/internal-portal/internal-portal/report2
           name: final-report
 
       - name: Deploy to GitHub Pages
