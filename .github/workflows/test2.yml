@@ -6,6 +6,9 @@ on:
         description: 'Test scenario tags'
         required: false
         type: boolean
+  push:
+    branches:
+      - internal_portal_changes
 
 jobs:
   build:
