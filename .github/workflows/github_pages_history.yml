@@ -1,5 +1,5 @@
 name: Github pages history
-on: push
+on: workflow_dispatch
 jobs:
   get-job-id:
     runs-on: ubuntu-latest
