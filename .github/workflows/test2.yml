@@ -1,14 +1,5 @@
 name: Manual Workflow
-on:
-  workflow_dispatch:
-    inputs:
-      tags:
-        description: 'Test scenario tags'
-        required: false
-        type: boolean
-  push:
-    branches:
-      - internal_portal_changes
+on: workflow_dispatch
 
 jobs:
   build:
